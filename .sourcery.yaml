@@ -1,0 +1,11 @@
+sources:
+  - Packages/Entity/Sources
+  - Packages/MockSupport/Sources
+  - Packages/Networking/Sources
+  - Packages/Storage/Sources
+templates:
+  - Packages/Mocks/Templates
+output:
+  Packages/Mocks/Sources/Generated
+args:
+  sourceryVersion: "2.3.0"

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "command": "npx",
+      "args": ["-y", "xcodebuildmcp@latest"]
+    },
+    "apple-docs": {
+      "command": "npx",
+      "args": ["-y", "@kimsungwhee/apple-docs-mcp"]
+    },
+    "firebase": {
+      "command": "npx",
+      "args": ["-y", "firebase-tools@latest", "mcp"]
+    }
+  }
+}

@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA395D8B2ED7573F0067D009 /* SharedViews in Frameworks */ = {isa = PBXBuildFile; productRef = AA395D8A2ED7573F0067D009 /* SharedViews */; };
+		AA395D8E2ED757760067D009 /* SearchViewFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA395D8D2ED757760067D009 /* SearchViewFeature */; };
+		AA395D912ED763790067D009 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = AA395D902ED763790067D009 /* Storage */; };
+		AA395D942ED895C00067D009 /* CreateDefenseTeamFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA395D932ED895C00067D009 /* CreateDefenseTeamFeature */; };
+		AA5F50E92EDB2AA60034A790 /* CreateAttackTeamFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA5F50E82EDB2AA60034A790 /* CreateAttackTeamFeature */; };
+		AA5F50EC2EDB2B900034A790 /* FilterUnitsFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA5F50EB2EDB2B900034A790 /* FilterUnitsFeature */; };
+		AAA6F3E72ED735000082E60D /* DefenseTeamListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AAA6F3E62ED735000082E60D /* DefenseTeamListFeature */; };
+		AAA6F3EA2ED738290082E60D /* Resources in Frameworks */ = {isa = PBXBuildFile; productRef = AAA6F3E92ED738290082E60D /* Resources */; };
+		AAA6F3ED2ED73CAC0082E60D /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AAA6F3EC2ED73CAC0082E60D /* AppFeature */; };
+		AAA6F3F02ED74BE90082E60D /* SharedViews in Frameworks */ = {isa = PBXBuildFile; productRef = AAA6F3EF2ED74BE90082E60D /* SharedViews */; };
+		AAB1FCF92ED8A8AB00E72857 /* AttackTeamListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AAB1FCF82ED8A8AB00E72857 /* AttackTeamListFeature */; };
+		AAB1FCFC2EDB1DEF00E72857 /* Mocks in Frameworks */ = {isa = PBXBuildFile; productRef = AAB1FCFB2EDB1DEF00E72857 /* Mocks */; };
+		AAB1FCFF2EDB210B00E72857 /* MockSupport in Frameworks */ = {isa = PBXBuildFile; productRef = AAB1FCFE2EDB210B00E72857 /* MockSupport */; };
+		AAE6D0602ED5E3E900E7194B /* PriconneDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6D05F2ED5E3E900E7194B /* PriconneDBApp.swift */; };
+		AAE6D0752ED5EF2F00E7194B /* Entity in Frameworks */ = {isa = PBXBuildFile; productRef = AAE6D0742ED5EF2F00E7194B /* Entity */; };
+		AAE6D0782ED5EF4200E7194B /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = AAE6D0772ED5EF4200E7194B /* Networking */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA4E62D62234FC4F004CC53C /* PriconneDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PriconneDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA4E62E52234FC51004CC53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAE6D05F2ED5E3E900E7194B /* PriconneDBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriconneDBApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AAE6D0662ED5E52B00E7194B /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA4E62D32234FC4F004CC53C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA6F3EA2ED738290082E60D /* Resources in Frameworks */,
+				AA5F50EC2EDB2B900034A790 /* FilterUnitsFeature in Frameworks */,
+				AA395D8B2ED7573F0067D009 /* SharedViews in Frameworks */,
+				AAE6D0782ED5EF4200E7194B /* Networking in Frameworks */,
+				AA395D942ED895C00067D009 /* CreateDefenseTeamFeature in Frameworks */,
+				AAA6F3ED2ED73CAC0082E60D /* AppFeature in Frameworks */,
+				AAE6D0752ED5EF2F00E7194B /* Entity in Frameworks */,
+				AAB1FCFC2EDB1DEF00E72857 /* Mocks in Frameworks */,
+				AAB1FCFF2EDB210B00E72857 /* MockSupport in Frameworks */,
+				AA5F50E92EDB2AA60034A790 /* CreateAttackTeamFeature in Frameworks */,
+				AAA6F3F02ED74BE90082E60D /* SharedViews in Frameworks */,
+				AA395D912ED763790067D009 /* Storage in Frameworks */,
+				AA395D8E2ED757760067D009 /* SearchViewFeature in Frameworks */,
+				AAA6F3E72ED735000082E60D /* DefenseTeamListFeature in Frameworks */,
+				AAB1FCF92ED8A8AB00E72857 /* AttackTeamListFeature in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA395D892ED7573F0067D009 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA4E62CD2234FC4F004CC53C = {
+			isa = PBXGroup;
+			children = (
+				AA4E62D82234FC4F004CC53C /* PriconneDB */,
+				AA395D892ED7573F0067D009 /* Frameworks */,
+				AA4E62D72234FC4F004CC53C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA4E62D72234FC4F004CC53C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA4E62D62234FC4F004CC53C /* PriconneDB.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA4E62D82234FC4F004CC53C /* PriconneDB */ = {
+			isa = PBXGroup;
+			children = (
+				AAE6D05F2ED5E3E900E7194B /* PriconneDBApp.swift */,
+				AAE6D0662ED5E52B00E7194B /* Assets */,
+				AA4E62E52234FC51004CC53C /* Info.plist */,
+			);
+			path = PriconneDB;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA4E62D52234FC4F004CC53C /* PriconneDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA4E62E82234FC51004CC53C /* Build configuration list for PBXNativeTarget "PriconneDB" */;
+			buildPhases = (
+				AA4E62D22234FC4F004CC53C /* Sources */,
+				AA4E62D32234FC4F004CC53C /* Frameworks */,
+				AA4E62D42234FC4F004CC53C /* Resources */,
+				AAE6D06A2ED5E75500E7194B /* Swift Lint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AAE6D0662ED5E52B00E7194B /* Assets */,
+			);
+			name = PriconneDB;
+			productName = PriconneDB;
+			productReference = AA4E62D62234FC4F004CC53C /* PriconneDB.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA4E62CE2234FC4F004CC53C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				ORGANIZATIONNAME = "Kazutoshi Baba";
+				TargetAttributes = {
+					AA4E62D52234FC4F004CC53C = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = AA4E62D12234FC4F004CC53C /* Build configuration list for PBXProject "PriconneDB" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ja,
+			);
+			mainGroup = AA4E62CD2234FC4F004CC53C;
+			packageReferences = (
+				AAE6D0732ED5EF2F00E7194B /* XCLocalSwiftPackageReference "Packages/Entity" */,
+				AAE6D0762ED5EF4200E7194B /* XCLocalSwiftPackageReference "Packages/Networking" */,
+				AAA6F3E52ED735000082E60D /* XCLocalSwiftPackageReference "Packages/DefenseTeamListFeature" */,
+				AAA6F3E82ED738290082E60D /* XCLocalSwiftPackageReference "Packages/Resources" */,
+				AAA6F3EB2ED73CAC0082E60D /* XCLocalSwiftPackageReference "Packages/AppFeature" */,
+				AAA6F3EE2ED74BE90082E60D /* XCLocalSwiftPackageReference "Packages/SharedViews" */,
+				AA395D8C2ED757760067D009 /* XCLocalSwiftPackageReference "Packages/SearchViewFeature" */,
+				AA395D8F2ED763790067D009 /* XCLocalSwiftPackageReference "Packages/Storage" */,
+				AA395D922ED895C00067D009 /* XCLocalSwiftPackageReference "Packages/CreateDefenseTeamFeature" */,
+				AAB1FCF72ED8A8AB00E72857 /* XCLocalSwiftPackageReference "Packages/AttackTeamListFeature" */,
+				AAB1FCFA2EDB1DEF00E72857 /* XCLocalSwiftPackageReference "Packages/Mocks" */,
+				AAB1FCFD2EDB210B00E72857 /* XCLocalSwiftPackageReference "Packages/MockSupport" */,
+				AA5F50E72EDB2AA60034A790 /* XCLocalSwiftPackageReference "Packages/CreateAttackTeamFeature" */,
+				AA5F50EA2EDB2B900034A790 /* XCLocalSwiftPackageReference "Packages/FilterUnitsFeature" */,
+			);
+			productRefGroup = AA4E62D72234FC4F004CC53C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA4E62D52234FC4F004CC53C /* PriconneDB */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA4E62D42234FC4F004CC53C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AAE6D06A2ED5E75500E7194B /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]\nthen\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA4E62D22234FC4F004CC53C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAE6D0602ED5E3E900E7194B /* PriconneDBApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA4E62E62234FC51004CC53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C94AX2R986;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.2;
+			};
+			name = Debug;
+		};
+		AA4E62E72234FC51004CC53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C94AX2R986;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA4E62E92234FC51004CC53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 52;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = PriconneDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoabagel.PriconneDB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		AA4E62EA2234FC51004CC53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 52;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = PriconneDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocoabagel.PriconneDB;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA4E62D12234FC4F004CC53C /* Build configuration list for PBXProject "PriconneDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA4E62E62234FC51004CC53C /* Debug */,
+				AA4E62E72234FC51004CC53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA4E62E82234FC51004CC53C /* Build configuration list for PBXNativeTarget "PriconneDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA4E62E92234FC51004CC53C /* Debug */,
+				AA4E62EA2234FC51004CC53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AA395D8C2ED757760067D009 /* XCLocalSwiftPackageReference "Packages/SearchViewFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SearchViewFeature;
+		};
+		AA395D8F2ED763790067D009 /* XCLocalSwiftPackageReference "Packages/Storage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Storage;
+		};
+		AA395D922ED895C00067D009 /* XCLocalSwiftPackageReference "Packages/CreateDefenseTeamFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CreateDefenseTeamFeature;
+		};
+		AA5F50E72EDB2AA60034A790 /* XCLocalSwiftPackageReference "Packages/CreateAttackTeamFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/CreateAttackTeamFeature;
+		};
+		AA5F50EA2EDB2B900034A790 /* XCLocalSwiftPackageReference "Packages/FilterUnitsFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/FilterUnitsFeature;
+		};
+		AAA6F3E52ED735000082E60D /* XCLocalSwiftPackageReference "Packages/DefenseTeamListFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DefenseTeamListFeature;
+		};
+		AAA6F3E82ED738290082E60D /* XCLocalSwiftPackageReference "Packages/Resources" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Resources;
+		};
+		AAA6F3EB2ED73CAC0082E60D /* XCLocalSwiftPackageReference "Packages/AppFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AppFeature;
+		};
+		AAA6F3EE2ED74BE90082E60D /* XCLocalSwiftPackageReference "Packages/SharedViews" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SharedViews;
+		};
+		AAB1FCF72ED8A8AB00E72857 /* XCLocalSwiftPackageReference "Packages/AttackTeamListFeature" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AttackTeamListFeature;
+		};
+		AAB1FCFA2EDB1DEF00E72857 /* XCLocalSwiftPackageReference "Packages/Mocks" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Mocks;
+		};
+		AAB1FCFD2EDB210B00E72857 /* XCLocalSwiftPackageReference "Packages/MockSupport" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/MockSupport;
+		};
+		AAE6D0732ED5EF2F00E7194B /* XCLocalSwiftPackageReference "Packages/Entity" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Entity;
+		};
+		AAE6D0762ED5EF4200E7194B /* XCLocalSwiftPackageReference "Packages/Networking" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Networking;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA395D8A2ED7573F0067D009 /* SharedViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAA6F3EE2ED74BE90082E60D /* XCLocalSwiftPackageReference "Packages/SharedViews" */;
+			productName = SharedViews;
+		};
+		AA395D8D2ED757760067D009 /* SearchViewFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SearchViewFeature;
+		};
+		AA395D902ED763790067D009 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
+		};
+		AA395D932ED895C00067D009 /* CreateDefenseTeamFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CreateDefenseTeamFeature;
+		};
+		AA5F50E82EDB2AA60034A790 /* CreateAttackTeamFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CreateAttackTeamFeature;
+		};
+		AA5F50EB2EDB2B900034A790 /* FilterUnitsFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FilterUnitsFeature;
+		};
+		AAA6F3E62ED735000082E60D /* DefenseTeamListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DefenseTeamListFeature;
+		};
+		AAA6F3E92ED738290082E60D /* Resources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Resources;
+		};
+		AAA6F3EC2ED73CAC0082E60D /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
+		AAA6F3EF2ED74BE90082E60D /* SharedViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedViews;
+		};
+		AAB1FCF82ED8A8AB00E72857 /* AttackTeamListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AttackTeamListFeature;
+		};
+		AAB1FCFB2EDB1DEF00E72857 /* Mocks */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mocks;
+		};
+		AAB1FCFE2EDB210B00E72857 /* MockSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MockSupport;
+		};
+		AAE6D0742ED5EF2F00E7194B /* Entity */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Entity;
+		};
+		AAE6D0772ED5EF4200E7194B /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA4E62CE2234FC4F004CC53C /* Project object */;
+}

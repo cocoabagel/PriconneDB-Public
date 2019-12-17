@@ -1,0 +1,9 @@
+--exclude Packages/Mocks/Sources/Generated
+--stripunusedargs closure-only
+--decimalgrouping 3
+--wraparguments beforefirst
+--closingparen balanced
+--wrapcollections beforefirst
+
+# 除外ルール
+--disable blankLinesAtEndOfScope,blankLinesAtStartOfScope,strongOutlets,hoistPatternLet,trailingCommas,blankLinesAroundMark,spaceAroundOperators,blankLinesBetweenScopes,andOperator,redundantExtensionACL,wrap,redundantReturn,strongifiedSelf,preferForLoop

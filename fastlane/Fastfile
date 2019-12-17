@@ -1,0 +1,91 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# テスト対象のパッケージ一覧
+TEST_PACKAGES = [
+  "AttackTeamListFeature",
+  "CreateAttackTeamFeature",
+  "CreateDefenseTeamFeature",
+  "DefenseTeamListFeature",
+  "FilterUnitsFeature",
+  "SearchViewFeature"
+].freeze
+
+SIMULATOR_NAME = "iPhone 17".freeze
+
+platform :ios do
+  desc "Run unit tests for all feature modules"
+  lane :unit_tests do
+    failed_packages = []
+
+    TEST_PACKAGES.each do |package|
+      UI.header("Testing #{package}")
+
+      begin
+        # 各パッケージディレクトリでxcodebuildを実行（fastlaneはfastlane/から実行されるため../を追加）
+        Dir.chdir("../Packages/#{package}") do
+          xcodebuild_cmd = "xcodebuild test " \
+            "-scheme #{package} " \
+            "-destination 'platform=iOS Simulator,name=#{SIMULATOR_NAME}' " \
+            "2>&1 | xcbeautify"
+
+          # テスト実行（エラーでも続行）
+          sh(xcodebuild_cmd) do |status, result, command|
+            if status.success?
+              UI.success("✅ #{package} tests passed!")
+            else
+              failed_packages << package
+              UI.error("❌ #{package} tests failed!")
+            end
+          end
+        end
+      rescue => e
+        failed_packages << package
+        UI.error("❌ #{package} tests failed: #{e.message}")
+      end
+    end
+
+    if failed_packages.empty?
+      UI.success("🎉 All unit tests passed!")
+    else
+      UI.user_error!("❌ Tests failed for: #{failed_packages.join(', ')}")
+    end
+  end
+
+  desc "Run unit tests for a specific module (usage: fastlane test_module module:ModuleName)"
+  lane :test_module do |options|
+    module_name = options[:module]
+
+    unless module_name
+      UI.user_error!("Please specify a module name: fastlane test_module module:ModuleName")
+    end
+
+    unless TEST_PACKAGES.include?(module_name)
+      UI.user_error!("Unknown module: #{module_name}. Available modules: #{TEST_PACKAGES.join(', ')}")
+    end
+
+    # fastlaneはfastlane/から実行されるため../を追加
+    Dir.chdir("../Packages/#{module_name}") do
+      sh(
+        "xcodebuild test " \
+        "-scheme #{module_name} " \
+        "-destination 'platform=iOS Simulator,name=#{SIMULATOR_NAME}' " \
+        "2>&1 | xcbeautify"
+      )
+    end
+  end
+end

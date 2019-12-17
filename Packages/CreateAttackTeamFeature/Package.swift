@@ -1,0 +1,40 @@
+// swift-tools-version: 6.2
+
+import PackageDescription
+
+let package = Package(
+    name: "CreateAttackTeamFeature",
+    platforms: [
+        .iOS(.v26)
+    ],
+    products: [
+        .library(
+            name: "CreateAttackTeamFeature",
+            targets: ["CreateAttackTeamFeature"]
+        )
+    ],
+    dependencies: [
+        .package(path: "../Entity"),
+        .package(path: "../Mocks"),
+        .package(path: "../Networking"),
+        .package(path: "../Resources"),
+        .package(path: "../SharedViews"),
+    ],
+    targets: [
+        .target(
+            name: "CreateAttackTeamFeature",
+            dependencies: [
+                "Entity",
+                "Networking",
+                "Resources",
+                "SharedViews",
+            ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "CreateAttackTeamFeatureTests",
+            dependencies: ["CreateAttackTeamFeature", "Mocks"],
+            path: "Tests"
+        )
+    ]
+)

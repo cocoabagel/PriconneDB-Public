@@ -1,0 +1,6 @@
+brew "rbenv"
+brew "swiftformat"
+brew "swiftlint"
+brew "fd"
+brew "sourcery"
+brew "xcbeautify"
