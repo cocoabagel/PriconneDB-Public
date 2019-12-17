@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>906715185979-8q2lfl5b5vt2meur9lj46idkce6bnmsf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.906715185979-8q2lfl5b5vt2meur9lj46idkce6bnmsf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBQnqSWu87QRQRPctdcaKWHpYuoseWs65A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>906715185979</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cocoabagel.PriconneDB</string>
+	<key>PROJECT_ID</key>
+	<string>priconnedb-public</string>
+	<key>STORAGE_BUCKET</key>
+	<string>priconnedb-public.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:906715185979:ios:f460ed9870b5860cfc6d1e</string>
+	<key>DATABASE_URL</key>
+	<string>https://priconnedb-public.firebaseio.com</string>
+</dict>
+</plist>
