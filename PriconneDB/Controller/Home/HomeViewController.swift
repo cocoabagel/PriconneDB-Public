@@ -108,13 +108,7 @@ extension HomeViewController {
             navigationItem.leftBarButtonItems = [logoutButtonItem]
         } else {
             let loginButtonItem = UIBarButtonItem(title: "ログイン", style: .plain, target: self, action: #selector(presentLogin))
-            #if DEBUG
-            // メタデータ更新スクリプトを実行
-            let refreshUnitsBarButtonItem = UIBarButtonItem(title: "メタデータ更新", style: .plain, target: self, action: #selector(updateUnits))
-            navigationItem.leftBarButtonItems = [loginButtonItem, refreshUnitsBarButtonItem]
-            #else
             navigationItem.leftBarButtonItems = [loginButtonItem]
-            #endif
         }
     }
     
@@ -134,10 +128,6 @@ extension HomeViewController {
         } catch let error {
             log.error("Auth sign out failed: \(error)")
         }
-    }
-    
-    @objc func updateUnits() {
-        Metadata.updateAllUnitData()
     }
 }
 
@@ -257,6 +247,7 @@ private extension HomeViewController {
                     log.error("Error getting documents: \(error)")
                 } else {
                     let units = snapshot!.documents.compactMap(Unit.init)
+                    log.debug(units)
                     RealmStore.shared.addOrUpdateOrDelete(units: units)
                     log.info("number of units: \(units.count)")
                     self.units = RealmStore.shared.units()

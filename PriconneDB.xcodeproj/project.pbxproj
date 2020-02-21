@@ -29,7 +29,6 @@
 		AA028A32227C6ABD00444A68 /* CreateAttackTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028A31227C6ABD00444A68 /* CreateAttackTeamViewController.swift */; };
 		AA028A34227CA2F900444A68 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA028A33227CA2F900444A68 /* AppAppearance.swift */; };
 		AA333875223CD63400857FA9 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA333874223CD63400857FA9 /* Unit.swift */; };
-		AA333877223D1A9700857FA9 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA333876223D1A9700857FA9 /* Metadata.swift */; };
 		AA333879223D27DC00857FA9 /* AttackTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA333878223D27DC00857FA9 /* AttackTeam.swift */; };
 		AA4E62DA2234FC4F004CC53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4E62D92234FC4F004CC53C /* AppDelegate.swift */; };
 		AA4E62DF2234FC4F004CC53C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA4E62DD2234FC4F004CC53C /* Main.storyboard */; };
@@ -90,7 +89,6 @@
 		AA028A33227CA2F900444A68 /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		AA028A35227CAE6700444A68 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		AA333874223CD63400857FA9 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
-		AA333876223D1A9700857FA9 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		AA333878223D27DC00857FA9 /* AttackTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackTeam.swift; sourceTree = "<group>"; };
 		AA4E62D62234FC4F004CC53C /* PriconneDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PriconneDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA4E62D92234FC4F004CC53C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				AA4E62DD2234FC4F004CC53C /* Main.storyboard */,
 				AA4E62E02234FC51004CC53C /* Assets.xcassets */,
 				AA4E62E22234FC51004CC53C /* LaunchScreen.storyboard */,
-				AAC0C292227D5147009AD58D /* Metadata */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -311,14 +308,6 @@
 				AABFCDB823A91860009B13B5 /* GoogleService-Info.plist */,
 			);
 			path = PriconneDB;
-			sourceTree = "<group>";
-		};
-		AAC0C292227D5147009AD58D /* Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				AA333876223D1A9700857FA9 /* Metadata.swift */,
-			);
-			path = Metadata;
 			sourceTree = "<group>";
 		};
 		AAC0C293227D5163009AD58D /* Generic UI */ = {
@@ -586,7 +575,6 @@
 				AAF03225227AA19300361836 /* ReusableView.swift in Sources */,
 				AAF03221227A9E8700361836 /* UITableView+Register.swift in Sources */,
 				AAF0321422789E9B00361836 /* RealmStore.swift in Sources */,
-				AA333877223D1A9700857FA9 /* Metadata.swift in Sources */,
 				AA8D36F92306F88C006180D0 /* STRatingControl.swift in Sources */,
 				05C434C7237AAD3E002CFBC4 /* RemarksCell.swift in Sources */,
 				AAF03229227AA29C00361836 /* StoryboardHelper.swift in Sources */,
