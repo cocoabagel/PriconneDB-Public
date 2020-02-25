@@ -26,11 +26,11 @@ private extension Logger {
         let console = ConsoleDestination()
         console.format = "$DHH:mm:ss$d $L $M"
         console.minLevel = .debug
-        console.levelString.verbose = "💜 VERBOSE"
-        console.levelString.debug = "💚 DEBUG"
-        console.levelString.info = "💙 INFO"
-        console.levelString.warning = "💛 WARNING"
-        console.levelString.error = "❤️ ERROR"
+        console.levelString.verbose = "🐷"
+        console.levelString.debug = "🛠️"
+        console.levelString.info = "ℹ️"
+        console.levelString.warning = "⚠️"
+        console.levelString.error = "💥"
         log.addDestination(console)
     }
     

@@ -16,6 +16,7 @@
 		054A2A702293E42700170033 /* SmallTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A2A6F2293E42700170033 /* SmallTeamView.swift */; };
 		054A2A722293E43400170033 /* SmallTeamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054A2A712293E43400170033 /* SmallTeamView.xib */; };
 		054A2A762295505F00170033 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A2A752295505F00170033 /* UIColor+Hex.swift */; };
+		0584E9292404DA57009FAC7F /* UIWindow+Visible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584E9282404DA57009FAC7F /* UIWindow+Visible.swift */; };
 		0596DFB3237AA21F00821B56 /* CreatedDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */; };
 		0596DFB4237AA21F00821B56 /* CreatedDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */; };
 		0596DFB6237AA61C00821B56 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596DFB5237AA61C00821B56 /* DateFormatting.swift */; };
@@ -73,6 +74,7 @@
 		054A2A6F2293E42700170033 /* SmallTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTeamView.swift; sourceTree = "<group>"; };
 		054A2A712293E43400170033 /* SmallTeamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallTeamView.xib; sourceTree = "<group>"; };
 		054A2A752295505F00170033 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		0584E9282404DA57009FAC7F /* UIWindow+Visible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Visible.swift"; sourceTree = "<group>"; };
 		0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedDateCell.swift; sourceTree = "<group>"; };
 		0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatedDateCell.xib; sourceTree = "<group>"; };
 		0596DFB5237AA61C00821B56 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -140,12 +142,9 @@
 		053A6F5E23682F3400621079 /* TeamCell */ = {
 			isa = PBXGroup;
 			children = (
-				AAF0322D227AA4D500361836 /* TeamCell.swift */,
-				AAF0322E227AA4D500361836 /* TeamCell.xib */,
-				053A6F612368308500621079 /* AttackTeamCell.swift */,
-				053A6F622368308500621079 /* AttackTeamCell.xib */,
-				0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */,
-				0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */,
+				0584E92B2404DAF3009FAC7F /* TeamCell */,
+				0584E92C2404DAFB009FAC7F /* AttackTeamCell */,
+				0584E92D2404DB01009FAC7F /* CreatedDateCell */,
 			);
 			path = TeamCell;
 			sourceTree = "<group>";
@@ -153,10 +152,8 @@
 		053A6F5F23682F3D00621079 /* EditTeamMemberCell */ = {
 			isa = PBXGroup;
 			children = (
-				AAF03242227B3F0F00361836 /* EditTeamMemberCell.swift */,
-				AAF03243227B3F0F00361836 /* EditTeamMemberCell.xib */,
-				05C434C5237AAD3E002CFBC4 /* RemarksCell.swift */,
-				05C434C6237AAD3E002CFBC4 /* RemarksCell.xib */,
+				0584E92E2404DB0C009FAC7F /* EditTeamMemberCell */,
+				0584E92F2404DB13009FAC7F /* RemarksCell */,
 			);
 			path = EditTeamMemberCell;
 			sourceTree = "<group>";
@@ -168,6 +165,71 @@
 				054A2A712293E43400170033 /* SmallTeamView.xib */,
 			);
 			path = SmallTeamView;
+			sourceTree = "<group>";
+		};
+		0584E92A2404DA9D009FAC7F /* STRatingControl */ = {
+			isa = PBXGroup;
+			children = (
+				AA8D36F82306F88B006180D0 /* STRatingControl.swift */,
+				AAC0C28C227D3C78009AD58D /* SmallRatingView.swift */,
+				AAC0C28E227D3C87009AD58D /* SmallRatingView.xib */,
+			);
+			path = STRatingControl;
+			sourceTree = "<group>";
+		};
+		0584E92B2404DAF3009FAC7F /* TeamCell */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0322D227AA4D500361836 /* TeamCell.swift */,
+				AAF0322E227AA4D500361836 /* TeamCell.xib */,
+			);
+			path = TeamCell;
+			sourceTree = "<group>";
+		};
+		0584E92C2404DAFB009FAC7F /* AttackTeamCell */ = {
+			isa = PBXGroup;
+			children = (
+				053A6F612368308500621079 /* AttackTeamCell.swift */,
+				053A6F622368308500621079 /* AttackTeamCell.xib */,
+			);
+			path = AttackTeamCell;
+			sourceTree = "<group>";
+		};
+		0584E92D2404DB01009FAC7F /* CreatedDateCell */ = {
+			isa = PBXGroup;
+			children = (
+				0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */,
+				0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */,
+			);
+			path = CreatedDateCell;
+			sourceTree = "<group>";
+		};
+		0584E92E2404DB0C009FAC7F /* EditTeamMemberCell */ = {
+			isa = PBXGroup;
+			children = (
+				AAF03242227B3F0F00361836 /* EditTeamMemberCell.swift */,
+				AAF03243227B3F0F00361836 /* EditTeamMemberCell.xib */,
+			);
+			path = EditTeamMemberCell;
+			sourceTree = "<group>";
+		};
+		0584E92F2404DB13009FAC7F /* RemarksCell */ = {
+			isa = PBXGroup;
+			children = (
+				05C434C5237AAD3E002CFBC4 /* RemarksCell.swift */,
+				05C434C6237AAD3E002CFBC4 /* RemarksCell.xib */,
+			);
+			path = RemarksCell;
+			sourceTree = "<group>";
+		};
+		0584E9302404DC34009FAC7F /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				AAF0321B2279888D00361836 /* TeamMember.swift */,
+				AAF0321E22799DAC00361836 /* DefenseTeam.swift */,
+				AA333878223D27DC00857FA9 /* AttackTeam.swift */,
+			);
+			path = Team;
 			sourceTree = "<group>";
 		};
 		059901E023A87DD100151A18 /* Assets */ = {
@@ -219,9 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				AA333874223CD63400857FA9 /* Unit.swift */,
-				AAF0321B2279888D00361836 /* TeamMember.swift */,
-				AAF0321E22799DAC00361836 /* DefenseTeam.swift */,
-				AA333878223D27DC00857FA9 /* AttackTeam.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -332,6 +391,7 @@
 		AAF0321D2279978D00361836 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0584E9302404DC34009FAC7F /* Team */,
 				059901E523A87F6700151A18 /* Unit */,
 				059901E623A87F7100151A18 /* User */,
 			);
@@ -359,14 +419,13 @@
 				AAF03228227AA29C00361836 /* StoryboardHelper.swift */,
 				AAF0322A227AA36100361836 /* Storyboard+.swift */,
 				AAF03236227AE7A300361836 /* Constants.swift */,
+				0584E9282404DA57009FAC7F /* UIWindow+Visible.swift */,
 				AAF03238227AEE5B00361836 /* TagIconUtils.swift */,
 				AAC0C290227D4051009AD58D /* UIView+Load.swift */,
 				054A2A752295505F00170033 /* UIColor+Hex.swift */,
 				0531394D229CE4DF00D5D235 /* UIView+.swift */,
-				AA8D36F82306F88B006180D0 /* STRatingControl.swift */,
 				053A6F652368310100621079 /* UIButton+.swift */,
-				AAC0C28C227D3C78009AD58D /* SmallRatingView.swift */,
-				AAC0C28E227D3C87009AD58D /* SmallRatingView.xib */,
+				0584E92A2404DA9D009FAC7F /* STRatingControl */,
 			);
 			path = "Generic UI";
 			sourceTree = "<group>";
@@ -481,7 +540,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		772A21F1AA0FC87A465E571F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -587,6 +646,7 @@
 				AAF0321C2279888D00361836 /* TeamMember.swift in Sources */,
 				0531394A229CDDC600D5D235 /* LoginViewController.swift in Sources */,
 				AAF03241227B382500361836 /* EditDefencedTeamViewController.swift in Sources */,
+				0584E9292404DA57009FAC7F /* UIWindow+Visible.swift in Sources */,
 				AAFF83B32247C1810011DFA8 /* PickUnitsViewController.swift in Sources */,
 				05313948229CD49E00D5D235 /* User.swift in Sources */,
 			);

@@ -6,6 +6,7 @@
 //  Copyright © 2015 Shukhrat Tursunov. All rights reserved.
 //
 
+// キャラの星6対応のために、OSSを魔改造
 import UIKit
 
 @objc public protocol STRatingControlDelegate {

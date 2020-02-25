@@ -11,6 +11,7 @@ import FirebaseFirestore
 import RealmSwift
 import Realm
 
+// RealmとFirebase共通のモデル
 public class Unit: Object {
     
     @objc public dynamic var key: String = ""

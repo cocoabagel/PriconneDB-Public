@@ -8,6 +8,7 @@
 
 import UIKit
 
+// キャラクターアイコンのサイズ調整クラス
 public struct Constants {
     
     public static var teamUnitTagSize: CGSize {
@@ -44,28 +45,6 @@ public struct Constants {
             return CGSize(width: 72, height: 72)
         default:
             return CGSize(width: 64, height: 64)
-        }
-    }
-}
-
-public extension UIWindow {
-    var visibleViewController: UIViewController? {
-        return UIWindow.visibleViewController(from: self.rootViewController)
-    }
-    
-    static func visibleViewController(from viewController: UIViewController?) -> UIViewController? {
-        switch viewController {
-        case let navigationController as UINavigationController:
-            return UIWindow.visibleViewController(from: navigationController.visibleViewController)
-            
-        case let tabBarController as UITabBarController:
-            return UIWindow.visibleViewController(from: tabBarController.selectedViewController)
-            
-        case let presentingViewController where viewController?.presentedViewController != nil:
-            return UIWindow.visibleViewController(from: presentingViewController?.presentedViewController)
-            
-        default:
-            return viewController
         }
     }
 }

@@ -19,11 +19,6 @@ import ViewAnimator
 class HomeViewController: UIViewController {
 
     // MARK: - Properties
-    private var user: User? {
-        didSet {
-            self.toggleLoginButton()
-        }
-    }
     private var units: [Unit] = []
     private var teams: [DefenseTeam] = []
     private var firstTime: Bool = true
@@ -42,7 +37,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        loginIfNeeded()
         fetchUnits()
         fetchTeams()
         
@@ -90,44 +84,10 @@ class HomeViewController: UIViewController {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-        
-        toggleLoginButton()
     }
     
     func animate() {
         UIView.animate(views: self.tableView.visibleCells, animations: self.animations)
-    }
-}
-
-// MARK: - Actions
-extension HomeViewController {
-    func toggleLoginButton() {
-        // WIP
-        if self.user != nil {
-            let logoutButtonItem = UIBarButtonItem(title: "ログアウト", style: .plain, target: self, action: #selector(logout))
-            navigationItem.leftBarButtonItems = [logoutButtonItem]
-        } else {
-            let loginButtonItem = UIBarButtonItem(title: "ログイン", style: .plain, target: self, action: #selector(presentLogin))
-            navigationItem.leftBarButtonItems = [loginButtonItem]
-        }
-    }
-    
-    @objc func presentLogin() {
-        guard let vc = storyboard?.instantiateViewController(ofType: LoginViewController.self) else { return }
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @objc func logout() {
-        do {
-            try Auth.auth().signOut()
-            self.user = nil
-            teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: self.user?.uid ?? "")
-            tableView.reloadData()
-            animate()
-        } catch let error {
-            log.error("Auth sign out failed: \(error)")
-        }
     }
 }
 
@@ -215,28 +175,13 @@ extension HomeViewController: UITableViewDelegate {
 // MARK: - PickUnitsViewControllerDelegate
 extension HomeViewController: PickUnitsViewControllerDelegate {
     func pickUnitsViewController(_ vc: PickUnitsViewController, didPickUpUnits: [Unit]) {
-        teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: self.user?.uid ?? "")
+        teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: "")
         tableView.reloadData()
         log.info("number of teams: \(teams.count)")
     }
 }
 
-// MARK: - LoginViewControllerDelegate
-extension HomeViewController: LoginViewControllerDelegate {
-    func loginViewControllerDidLogin(_ vc: LoginViewController) {
-        teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: self.user?.uid ?? "")
-        tableView.reloadData()
-        animate()
-    }
-}
-
 private extension HomeViewController {
-    func loginIfNeeded() {
-        Auth.auth().addStateDidChangeListener { _, user in
-            guard let user = user else { return }
-            self.user = User(authData: user)
-        }
-    }
     
     func fetchUnits() {
         let db = Firestore.firestore()
@@ -247,7 +192,6 @@ private extension HomeViewController {
                     log.error("Error getting documents: \(error)")
                 } else {
                     let units = snapshot!.documents.compactMap(Unit.init)
-                    log.debug(units)
                     RealmStore.shared.addOrUpdateOrDelete(units: units)
                     log.info("number of units: \(units.count)")
                     self.units = RealmStore.shared.units()
@@ -267,7 +211,7 @@ private extension HomeViewController {
                     let teams = snapshot!.documents.compactMap(DefenseTeam.init)
                     log.info("number of teams: \(teams.count)")
                     RealmStore.shared.addOrUpdateOrDelete(defensedTeams: teams)
-                    self.teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: self.user?.uid ?? "")
+                    self.teams = RealmStore.shared.filterDefensedTeamsIn(names: LocalStore.selectUnitNames(), uid: "")
                     self.tableView.reloadData()
                     if self.firstTime {
                         self.firstTime = false
