@@ -17,6 +17,7 @@
 		054A2A722293E43400170033 /* SmallTeamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054A2A712293E43400170033 /* SmallTeamView.xib */; };
 		054A2A762295505F00170033 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054A2A752295505F00170033 /* UIColor+Hex.swift */; };
 		0584E9292404DA57009FAC7F /* UIWindow+Visible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584E9282404DA57009FAC7F /* UIWindow+Visible.swift */; };
+		0584E9322404F553009FAC7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0584E9312404F553009FAC7F /* Settings.bundle */; };
 		0596DFB3237AA21F00821B56 /* CreatedDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */; };
 		0596DFB4237AA21F00821B56 /* CreatedDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */; };
 		0596DFB6237AA61C00821B56 /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596DFB5237AA61C00821B56 /* DateFormatting.swift */; };
@@ -75,6 +76,7 @@
 		054A2A712293E43400170033 /* SmallTeamView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallTeamView.xib; sourceTree = "<group>"; };
 		054A2A752295505F00170033 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		0584E9282404DA57009FAC7F /* UIWindow+Visible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Visible.swift"; sourceTree = "<group>"; };
+		0584E9312404F553009FAC7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0596DFB1237AA21F00821B56 /* CreatedDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedDateCell.swift; sourceTree = "<group>"; };
 		0596DFB2237AA21F00821B56 /* CreatedDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatedDateCell.xib; sourceTree = "<group>"; };
 		0596DFB5237AA61C00821B56 /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				059901E023A87DD100151A18 /* Assets */,
 				AA4E62E52234FC51004CC53C /* Info.plist */,
 				AABFCDB823A91860009B13B5 /* GoogleService-Info.plist */,
+				0584E9312404F553009FAC7F /* Settings.bundle */,
 			);
 			path = PriconneDB;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				AAC0C28F227D3C87009AD58D /* SmallRatingView.xib in Resources */,
 				AAF03230227AA4D500361836 /* TeamCell.xib in Resources */,
 				AAF03245227B3F0F00361836 /* EditTeamMemberCell.xib in Resources */,
+				0584E9322404F553009FAC7F /* Settings.bundle in Resources */,
 				053A6F642368308500621079 /* AttackTeamCell.xib in Resources */,
 				AA4E62E12234FC51004CC53C /* Assets.xcassets in Resources */,
 				0596DFB4237AA21F00821B56 /* CreatedDateCell.xib in Resources */,
