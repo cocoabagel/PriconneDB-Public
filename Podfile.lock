@@ -338,6 +338,7 @@ PODS:
   - Realm/Headers (4.3.2)
   - RealmSwift (4.3.2):
     - Realm (= 4.3.2)
+  - Reveal-SDK (24)
   - SwiftLint (0.39.1)
   - SwiftyBeaver (1.8.4)
   - Then (2.6.0)
@@ -357,6 +358,7 @@ DEPENDENCIES:
   - KingfisherWebP
   - PanModal
   - RealmSwift
+  - Reveal-SDK
   - SwiftLint
   - SwiftyBeaver
   - Then
@@ -402,6 +404,7 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - Reveal-SDK
     - SwiftLint
     - SwiftyBeaver
     - Then
@@ -446,12 +449,13 @@ SPEC CHECKSUMS:
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TTGTagCollectionView: 86fcbfa6a7493c9e860b01c2e693cffc8acf6de1
   ViewAnimator: 5af1c6f3b310f012bf081259c43717aa54fbae73
 
-PODFILE CHECKSUM: b2686e42db8424333a20bdd8ca9b425d6ea1a50c
+PODFILE CHECKSUM: c631cc322480d47071d1fde432d057c3e472636e
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

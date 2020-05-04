@@ -7,6 +7,7 @@ target 'PriconneDB' do
   use_frameworks!
  
   # Pods for PriconneDB
+  pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'SwiftLint'
   pod 'Firebase/Core', :inhibit_warnings => true
   pod 'Firebase/Firestore', :inhibit_warnings => true

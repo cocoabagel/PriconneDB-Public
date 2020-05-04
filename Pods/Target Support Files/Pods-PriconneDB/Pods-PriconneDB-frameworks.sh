@@ -1,19 +1,4 @@
 #!/bin/sh
-                
-# ---- this is added by cocoapods-binary ---
-# Readlink cannot handle relative symlink well, so we override it to a new one
-# If the path isn't an absolute path, we add a realtive prefix.
-old_read_link=`which readlink`
-readlink () {
-    path=`$old_read_link $1`;
-    if [ $(echo "$path" | cut -c 1-1) = '/' ]; then
-        echo $path;
-    else
-        echo "`dirname $1`/$path";
-    fi
-}
-# --- 
-#!/bin/sh
 set -e
 set -u
 set -o pipefail
@@ -61,8 +46,8 @@ install_framework()
   fi
 
   # Use filter instead of exclude so missing patterns don't throw errors.
-  echo "rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
-  rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
+  echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
+  rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
 
   local basename
   basename="$(basename -s .framework "$1")"
@@ -99,27 +84,29 @@ install_framework()
 # Copies and strips a vendored dSYM
 install_dsym() {
   local source="$1"
+  warn_missing_arch=${2:-true}
   if [ -r "$source" ]; then
-    # Copy the dSYM into a the targets temp dir.
-    echo "rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${DERIVED_FILES_DIR}\""
-    rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${DERIVED_FILES_DIR}"
+    # Copy the dSYM into the targets temp dir.
+    echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${DERIVED_FILES_DIR}\""
+    rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${DERIVED_FILES_DIR}"
 
     local basename
-    basename="$(basename -s .framework.dSYM "$source")"
-    binary="${DERIVED_FILES_DIR}/${basename}.framework.dSYM/Contents/Resources/DWARF/${basename}"
+    basename="$(basename -s .dSYM "$source")"
+    binary_name="$(ls "$source/Contents/Resources/DWARF")"
+    binary="${DERIVED_FILES_DIR}/${basename}.dSYM/Contents/Resources/DWARF/${binary_name}"
 
     # Strip invalid architectures so "fat" simulator / device frameworks work on device
     if [[ "$(file "$binary")" == *"Mach-O "*"dSYM companion"* ]]; then
-      strip_invalid_archs "$binary"
+      strip_invalid_archs "$binary" "$warn_missing_arch"
     fi
 
     if [[ $STRIP_BINARY_RETVAL == 1 ]]; then
       # Move the stripped file into its final destination.
-      echo "rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${DERIVED_FILES_DIR}/${basename}.framework.dSYM\" \"${DWARF_DSYM_FOLDER_PATH}\""
-      rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${DERIVED_FILES_DIR}/${basename}.framework.dSYM" "${DWARF_DSYM_FOLDER_PATH}"
+      echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${DERIVED_FILES_DIR}/${basename}.framework.dSYM\" \"${DWARF_DSYM_FOLDER_PATH}\""
+      rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${DERIVED_FILES_DIR}/${basename}.dSYM" "${DWARF_DSYM_FOLDER_PATH}"
     else
       # The dSYM was not stripped at all, in this case touch a fake folder so the input/output paths from Xcode do not reexecute this script because the file is missing.
-      touch "${DWARF_DSYM_FOLDER_PATH}/${basename}.framework.dSYM"
+      touch "${DWARF_DSYM_FOLDER_PATH}/${basename}.dSYM"
     fi
   fi
 }
@@ -128,8 +115,8 @@ install_dsym() {
 install_bcsymbolmap() {
     local bcsymbolmap_path="$1"
     local destination="${BUILT_PRODUCTS_DIR}"
-    echo "rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}""
-    rsync --copy-links --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}"
+    echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}""
+    rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}"
 }
 
 # Signs a framework with the provided identity
@@ -150,13 +137,16 @@ code_sign_if_enabled() {
 # Strip invalid architectures
 strip_invalid_archs() {
   binary="$1"
+  warn_missing_arch=${2:-true}
   # Get architectures for current target binary
   binary_archs="$(lipo -info "$binary" | rev | cut -d ':' -f1 | awk '{$1=$1;print}' | rev)"
   # Intersect them with the architectures we are building for
   intersected_archs="$(echo ${ARCHS[@]} ${binary_archs[@]} | tr ' ' '\n' | sort | uniq -d)"
   # If there are no archs supported by this binary then warn the user
   if [[ -z "$intersected_archs" ]]; then
-    echo "warning: [CP] Vendored binary '$binary' contains architectures ($binary_archs) none of which match the current build architectures ($ARCHS)."
+    if [[ "$warn_missing_arch" == "true" ]]; then
+      echo "warning: [CP] Vendored binary '$binary' contains architectures ($binary_archs) none of which match the current build architectures ($ARCHS)."
+    fi
     STRIP_BINARY_RETVAL=0
     return
   fi
@@ -174,6 +164,37 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
+install_artifact() {
+  artifact="$1"
+  base="$(basename "$artifact")"
+  case $base in
+  *.framework)
+    install_framework "$artifact"
+    ;;
+  *.dSYM)
+    # Suppress arch warnings since XCFrameworks will include many dSYM files
+    install_dsym "$artifact" "false"
+    ;;
+  *.bcsymbolmap)
+    install_bcsymbolmap "$artifact"
+    ;;
+  *)
+    echo "error: Unrecognized artifact "$artifact""
+    ;;
+  esac
+}
+
+copy_artifacts() {
+  file_list="$1"
+  while read artifact; do
+    install_artifact "$artifact"
+  done <$file_list
+}
+
+ARTIFACT_LIST_FILE="${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt"
+if [ -r "${ARTIFACT_LIST_FILE}" ]; then
+  copy_artifacts "${ARTIFACT_LIST_FILE}"
+fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework"
@@ -188,6 +209,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework"
+  install_framework "${PODS_ROOT}/Reveal-SDK/RevealServer/iOS/RevealServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TTGTagCollectionView/TTGTagCollectionView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Then/Then.framework"
