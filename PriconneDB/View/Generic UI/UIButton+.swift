@@ -10,7 +10,7 @@ import UIKit
 
 extension UIButton {
     
-    @IBInspectable var highlightedColor: UIColor {
+    @IBInspectable private var highlightedColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -20,7 +20,7 @@ extension UIButton {
         }
     }
     
-    @IBInspectable var normalColor: UIColor {
+    @IBInspectable private var normalColor: UIColor {
         get {
             return UIColor.clear
         }
@@ -30,7 +30,7 @@ extension UIButton {
         }
     }
     
-    @IBInspectable var inactiveColor: UIColor {
+    @IBInspectable private var inactiveColor: UIColor {
         get {
             return UIColor.clear
         }
