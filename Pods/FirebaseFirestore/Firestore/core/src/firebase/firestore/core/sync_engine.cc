@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Google
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,20 @@
 #include "Firestore/core/src/firebase/firestore/core/sync_engine.h"
 
 #include "Firestore/core/include/firebase/firestore/firestore_errors.h"
+#include "Firestore/core/src/firebase/firestore/core/sync_engine_callback.h"
 #include "Firestore/core/src/firebase/firestore/core/transaction.h"
 #include "Firestore/core/src/firebase/firestore/core/transaction_runner.h"
+#include "Firestore/core/src/firebase/firestore/local/local_documents_view.h"
+#include "Firestore/core/src/firebase/firestore/local/local_store.h"
+#include "Firestore/core/src/firebase/firestore/local/local_view_changes.h"
+#include "Firestore/core/src/firebase/firestore/local/local_write_result.h"
 #include "Firestore/core/src/firebase/firestore/local/query_result.h"
 #include "Firestore/core/src/firebase/firestore/local/target_data.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key_set.h"
 #include "Firestore/core/src/firebase/firestore/model/document_map.h"
 #include "Firestore/core/src/firebase/firestore/model/document_set.h"
+#include "Firestore/core/src/firebase/firestore/model/mutation_batch_result.h"
 #include "Firestore/core/src/firebase/firestore/model/no_document.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/log.h"
@@ -66,9 +72,9 @@ const ListenSequenceNumber kIrrelevantSequenceNumber = -1;
 
 bool ErrorIsInteresting(const Status& error) {
   bool missing_index =
-      (error.code() == Error::FailedPrecondition &&
+      (error.code() == Error::kFailedPrecondition &&
        error.error_message().find("requires an index") != std::string::npos);
-  bool no_permission = (error.code() == Error::PermissionDenied);
+  bool no_permission = (error.code() == Error::kPermissionDenied);
   return missing_index || no_permission;
 }
 
@@ -129,8 +135,7 @@ ViewSnapshot SyncEngine::InitializeViewAndComputeSnapshot(const Query& query,
       view.ComputeDocumentChanges(query_result.documents().underlying_map());
   ViewChange view_change =
       view.ApplyChanges(view_doc_changes, synthesized_current_change);
-  HARD_ASSERT(view_change.limbo_changes().empty(),
-              "View returned limbo docs before target ack from the server.");
+  UpdateTrackedLimboDocuments(view_change.limbo_changes(), target_id);
 
   auto query_view =
       std::make_shared<QueryView>(query, target_id, std::move(view));
@@ -401,10 +406,8 @@ DocumentKeySet SyncEngine::GetRemoteKeys(TargetId target_id) const {
     }
 
     for (const auto& query : queries_by_target_.at(target_id)) {
-      for (const auto& key :
-           query_views_by_query_.at(query)->view().synced_documents()) {
-        keys = keys.insert(key);
-      }
+      keys = keys.union_with(
+          query_views_by_query_.at(query)->view().synced_documents());
     }
     return keys;
   }
@@ -442,7 +445,7 @@ void SyncEngine::FailOutstandingPendingWriteCallbacks(
     const std::string& message) {
   for (const auto& entry : pending_writes_callbacks_) {
     for (const auto& callback : entry.second) {
-      callback(Status(Error::Cancelled, message));
+      callback(Status(Error::kCancelled, message));
     }
   }
 

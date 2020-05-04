@@ -90,7 +90,7 @@ import UIKit
 
     /// The image displayed on the button by default.
     /// When only one `JJActionItem` is added and `handleSingleActionDirectly` is enabled,
-    /// the image from the item is shown istead.
+    /// the image from the item is shown instead.
     /// When set to `nil` an image of a plus sign is used.
     /// Default is `nil`.
     ///
@@ -131,7 +131,7 @@ import UIKit
     }
 
     /// The default diameter of the floating action button.
-    /// This is ignored if the size is defined by autolayout.
+    /// This is ignored if the size is defined by auto-layout.
     /// Default is `56`.
     ///
     @objc @IBInspectable public dynamic var buttonDiameter: CGFloat = 56 {
@@ -162,7 +162,7 @@ import UIKit
     public var itemAnimationConfiguration: JJItemAnimationConfiguration = .popUp()
 
     /// When enabled and only one action item is added, the floating action button will not open,
-    /// but the action from the action item will be executed direclty when the button is tapped.
+    /// but the action from the action item will be executed directly when the button is tapped.
     /// Also the image of the floating action button will be replaced with the one from the action item.
     ///
     /// Default is `true`.
@@ -172,6 +172,15 @@ import UIKit
             configureButtonImage()
         }
     }
+
+    /// When enabled, the floating action button will close after an action item was tapped,
+    /// otherwise the action button will stay open and has to be closed explicitly.
+    ///
+    /// Default is `true`.
+    ///
+    /// - SeeAlso: `close`
+    ///
+    @objc @IBInspectable public var closeAutomatically: Bool = true
 
     /// The current state of the floating action button.
     /// Possible values are
@@ -315,11 +324,32 @@ import UIKit
     ///
     /// - Parameter item: The action item.
     ///
-    /// - Returns: The item that was add. Its configuration can be changed after it has been added.
-    ///
     func addItem(_ item: JJActionItem) {
         items.append(item) // this will call `didSet` of `items`
-        configureButtonImage()
+    }
+
+    /// Remove an action item from the list of items.
+    ///
+    /// - Parameter item: The action item.
+    ///
+    /// - Returns: The item that was removed. `nil` if `item` was not found.
+    ///
+    @discardableResult func removeItem(_ item: JJActionItem) -> JJActionItem? {
+        guard let index = items.firstIndex(of: item) else {
+            return nil
+        }
+        return removeItem(at: index)
+    }
+
+    /// Remove and returns the action item at the specified position in the list of items.
+    ///
+    /// - Parameter index: The index of the action item. `index` must
+    ///   be a valid index of the list of items.
+    ///
+    /// - Returns: The item that was removed.
+    ///
+    @discardableResult func removeItem(at index: Int) -> JJActionItem {
+        return items.remove(at: index)
     }
 
     /// Calls the given closure on each item that is or was added to the floating action button.
@@ -349,7 +379,7 @@ import UIKit
         }
     }
 
-    /// All items that will be shown when floating action button ist opened.
+    /// All items that will be shown when floating action button is opened.
     /// This excludes hidden items and items that have user interaction disabled.
     ///
     var enabledItems: [JJActionItem] {
@@ -389,6 +419,16 @@ extension JJFloatingActionButton {
     open override func updateConstraints() {
         updateDynamicConstraints()
         super.updateConstraints()
+    }
+
+    /// Tells the view that its superview changed.
+    ///
+    public override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        if superview == nil {
+            close(animated: false)
+            removeRelatedViewsFromSuperview()
+        }
     }
 }
 
@@ -478,9 +518,9 @@ fileprivate extension JJFloatingActionButton {
     var imageSizeConstraints: [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         if buttonImageSize == .zero {
-            let muliplier = CGFloat(1 / sqrt(2))
-            constraints.append(imageView.widthAnchor.constraint(lessThanOrEqualTo: circleView.widthAnchor, multiplier: muliplier))
-            constraints.append(imageView.heightAnchor.constraint(lessThanOrEqualTo: circleView.heightAnchor, multiplier: muliplier))
+            let multiplier = CGFloat(1 / sqrt(2))
+            constraints.append(imageView.widthAnchor.constraint(lessThanOrEqualTo: circleView.widthAnchor, multiplier: multiplier))
+            constraints.append(imageView.heightAnchor.constraint(lessThanOrEqualTo: circleView.heightAnchor, multiplier: multiplier))
         } else {
             constraints.append(imageView.widthAnchor.constraint(equalToConstant: buttonImageSize.width))
             constraints.append(imageView.heightAnchor.constraint(equalToConstant: buttonImageSize.height))
@@ -514,7 +554,7 @@ internal extension JJFloatingActionButton {
 fileprivate extension JJFloatingActionButton {
     @objc func buttonWasTapped() {
         switch buttonState {
-        case .open:
+        case .open, .opening:
             close()
 
         case .closed:
@@ -526,7 +566,13 @@ fileprivate extension JJFloatingActionButton {
     }
 
     @objc func itemWasTapped(sender: JJActionItem) {
-        close()
+        guard buttonState == .open || buttonState == .opening else {
+            return
+        }
+
+        if closeAutomatically {
+            close()
+        }
         sender.callAction()
     }
 

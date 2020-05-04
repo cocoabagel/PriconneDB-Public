@@ -18,8 +18,10 @@
 
 #include <map>
 
+#include "Firestore/core/src/firebase/firestore/core/database_info.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/maybe_document.h"
+#include "Firestore/core/src/firebase/firestore/model/mutation.h"
 #include "Firestore/core/src/firebase/firestore/model/snapshot_version.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/byte_string.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/nanopb_util.h"
@@ -151,6 +153,12 @@ WriteStreamSerializer::EncodeWriteMutationsRequest(
   result->stream_token = nanopb::CopyBytesArray(last_stream_token.get());
 
   return result;
+}
+
+Message<google_firestore_v1_WriteRequest>
+WriteStreamSerializer::EncodeEmptyMutationsList(
+    const ByteString& last_stream_token) const {
+  return EncodeWriteMutationsRequest({}, last_stream_token);
 }
 
 Message<google_firestore_v1_WriteResponse> WriteStreamSerializer::ParseResponse(

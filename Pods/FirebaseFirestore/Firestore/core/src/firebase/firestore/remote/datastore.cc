@@ -25,6 +25,7 @@
 #include "Firestore/core/src/firebase/firestore/core/database_info.h"
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
+#include "Firestore/core/src/firebase/firestore/model/mutation.h"
 #include "Firestore/core/src/firebase/firestore/remote/connectivity_monitor.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_completion.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_connection.h"
@@ -282,7 +283,7 @@ void Datastore::ResumeRpcWithCredentials(const OnCredentials& on_credentials) {
 }
 
 void Datastore::HandleCallStatus(const Status& status) {
-  if (status.code() == Error::Unauthenticated) {
+  if (status.code() == Error::kUnauthenticated) {
     credentials_->InvalidateToken();
   }
 }
@@ -297,35 +298,35 @@ void Datastore::RemoveGrpcCall(GrpcCall* to_remove) {
 }
 
 bool Datastore::IsAbortedError(const Status& error) {
-  return error.code() == Error::Aborted;
+  return error.code() == Error::kAborted;
 }
 
 bool Datastore::IsPermanentError(const Status& error) {
   switch (error.code()) {
-    case Error::Ok:
+    case Error::kOk:
       HARD_FAIL("Treated status OK as error");
-    case Error::Cancelled:
-    case Error::Unknown:
-    case Error::DeadlineExceeded:
-    case Error::ResourceExhausted:
-    case Error::Internal:
-    case Error::Unavailable:
+    case Error::kCancelled:
+    case Error::kUnknown:
+    case Error::kDeadlineExceeded:
+    case Error::kResourceExhausted:
+    case Error::kInternal:
+    case Error::kUnavailable:
       // Unauthenticated means something went wrong with our token and we need
       // to retry with new credentials which will happen automatically.
-    case Error::Unauthenticated:
+    case Error::kUnauthenticated:
       return false;
-    case Error::InvalidArgument:
-    case Error::NotFound:
-    case Error::AlreadyExists:
-    case Error::PermissionDenied:
-    case Error::FailedPrecondition:
-    case Error::Aborted:
+    case Error::kInvalidArgument:
+    case Error::kNotFound:
+    case Error::kAlreadyExists:
+    case Error::kPermissionDenied:
+    case Error::kFailedPrecondition:
+    case Error::kAborted:
       // Aborted might be retried in some scenarios, but that is dependant on
       // the context and should handled individually by the calling code.
       // See https://cloud.google.com/apis/design/errors
-    case Error::OutOfRange:
-    case Error::Unimplemented:
-    case Error::DataLoss:
+    case Error::kOutOfRange:
+    case Error::kUnimplemented:
+    case Error::kDataLoss:
       return true;
   }
 

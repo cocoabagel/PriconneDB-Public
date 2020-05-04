@@ -60,6 +60,9 @@ import UIKit
         openItems(animated: animated, group: animationGroup)
 
         let groupCompletion: () -> Void = {
+            guard self.buttonState == .opening else {
+                return
+            }
             self.buttonState = .open
             self.delegate?.floatingActionButtonDidOpen?(self)
             completion?()
@@ -80,7 +83,7 @@ import UIKit
     /// - SeeAlso: `itemAnimationConfiguration`
     ///
     func close(animated: Bool = true, completion: (() -> Void)? = nil) {
-        guard buttonState == .open else {
+        guard buttonState == .open || buttonState == .opening else {
             return
         }
         buttonState = .closing
@@ -109,6 +112,18 @@ import UIKit
             animationGroup.notify(queue: .main, execute: groupCompletion)
         } else {
             groupCompletion()
+        }
+    }
+}
+
+internal extension JJFloatingActionButton {
+    func removeRelatedViewsFromSuperview() {
+        if overlayView.superview != nil {
+            overlayView.removeFromSuperview()
+        }
+
+        if itemContainerView.superview != nil {
+            itemContainerView.removeFromSuperview()
         }
     }
 }
@@ -184,10 +199,10 @@ fileprivate extension JJFloatingActionButton {
                          group: group,
                          animated: animated)
         case .transition:
-            transistion(toImage: configuration.image,
-                        settings: configuration.opening,
-                        animated: animated,
-                        group: group)
+            transition(toImage: configuration.image,
+                       settings: configuration.opening,
+                       animated: animated,
+                       group: group)
         }
     }
 
@@ -201,10 +216,10 @@ fileprivate extension JJFloatingActionButton {
                          group: group,
                          animated: animated)
         case .transition:
-            transistion(toImage: currentButtonImage,
-                        settings: configuration.closing,
-                        animated: animated,
-                        group: group)
+            transition(toImage: currentButtonImage,
+                       settings: configuration.closing,
+                       animated: animated,
+                       group: group)
         }
     }
 
@@ -224,10 +239,10 @@ fileprivate extension JJFloatingActionButton {
                        animated: animated)
     }
 
-    func transistion(toImage image: UIImage?,
-                     settings: JJAnimationSettings,
-                     animated: Bool,
-                     group: DispatchGroup) {
+    func transition(toImage image: UIImage?,
+                    settings: JJAnimationSettings,
+                    animated: Bool,
+                    group: DispatchGroup) {
         let transition: () -> Void = {
             self.imageView.image = image
         }

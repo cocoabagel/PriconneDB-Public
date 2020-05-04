@@ -24,6 +24,8 @@
 #import "Firestore/Source/API/FSTUserDataConverter.h"
 
 #include "Firestore/core/src/firebase/firestore/api/collection_reference.h"
+#include "Firestore/core/src/firebase/firestore/api/document_reference.h"
+#include "Firestore/core/src/firebase/firestore/core/user_data.h"
 #include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/util/error_apple.h"
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
@@ -52,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Override the designated initializer from the super class.
 - (instancetype)initWithQuery:(api::Query &&)query {
+  (void)query;
+
   HARD_FAIL("Use FIRCollectionReference initWithPath: initializer.");
 }
 

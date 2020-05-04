@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Google
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 
 #include "Firestore/core/src/firebase/firestore/auth/user.h"
 #include "Firestore/core/src/firebase/firestore/core/database_info.h"
+#include "Firestore/core/src/firebase/firestore/local/leveldb_key.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_lru_reference_delegate.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_migrations.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_opener.h"
@@ -98,7 +99,7 @@ util::StatusOr<std::unique_ptr<LevelDbPersistence>> LevelDbPersistence::Create(
   std::unique_ptr<LevelDbPersistence> result(
       new LevelDbPersistence(std::move(db), std::move(dir), std::move(users),
                              std::move(serializer), lru_params));
-  return std::move(result);
+  return {std::move(result)};
 }
 
 LevelDbPersistence::LevelDbPersistence(std::unique_ptr<leveldb::DB> db,
@@ -123,13 +124,16 @@ LevelDbPersistence::LevelDbPersistence(std::unique_ptr<leveldb::DB> db,
   started_ = true;
 }
 
+// Handle unique_ptrs to forward declarations
+LevelDbPersistence::~LevelDbPersistence() = default;
+
 // MARK: - Startup
 
 Status LevelDbPersistence::EnsureDirectory(const Path& dir) {
   auto* fs = Filesystem::Default();
   Status status = fs->RecursivelyCreateDir(dir);
   if (!status.ok()) {
-    return Status{Error::Internal, "Failed to create persistence directory"}
+    return Status{Error::kInternal, "Failed to create persistence directory"}
         .CausedBy(status);
   }
 
@@ -143,7 +147,7 @@ StatusOr<std::unique_ptr<DB>> LevelDbPersistence::OpenDb(const Path& dir) {
   DB* database = nullptr;
   leveldb::Status status = DB::Open(options, dir.ToUtf8String(), &database);
   if (!status.ok()) {
-    return Status{Error::Internal,
+    return Status{Error::kInternal,
                   StringFormat("Failed to open LevelDB database at %s",
                                dir.ToUtf8String())}
         .CausedBy(ConvertStatus(status));

@@ -34,6 +34,7 @@
 #include "Firestore/core/src/firebase/firestore/api/firestore.h"
 #include "Firestore/core/src/firebase/firestore/auth/credentials_provider.h"
 #include "Firestore/core/src/firebase/firestore/auth/firebase_credentials_provider_apple.h"
+#include "Firestore/core/src/firebase/firestore/model/maybe_document.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
 #include "Firestore/core/src/firebase/firestore/util/executor.h"
@@ -128,6 +129,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - FIRComponentLifecycleMaintainer
 
 - (void)appWillBeDeleted:(FIRApp *)app {
+  (void)app;
+
   NSDictionary<NSString *, FIRFirestore *> *instances;
   @synchronized(_instances) {
     instances = [_instances copy];
