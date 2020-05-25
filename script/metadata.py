@@ -178,5 +178,6 @@ add_unit('リン（デレマス）', 153, 5, False, 'https://firebasestorage.goo
 add_unit('ユニ', 807, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F807-01.webp?alt=media&token=d2baeede-07c6-4471-85fb-897c17f314e1', '') #807-01
 add_unit('チエル', 222, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F220-01.webp?alt=media&token=c7fbdb01-216e-4094-b75b-621ef6345bc1', '') #222-01
 add_unit('リン（レンジャー）', 422, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F422-01.webp?alt=media&token=77fa7676-ce6e-460a-a3d8-5de898641e37', '') #422-01
+add_unit('マヒル（レンジャー）', 390, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F390-01.webp?alt=media&token=9dd4d97d-137b-443a-8314-43076abb57d9', '') #390-01
 
 units()
