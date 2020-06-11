@@ -104,7 +104,7 @@ add_unit('マヒル', 395, 5, True, 'https://firebasestorage.googleapis.com/v0/b
 add_unit('ユカリ', 405, 6, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F405-01.webp?alt=media&token=55a62bfa-7414-4c21-b436-f7128bd62dac', 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F405-01-06.webp?alt=media&token=32efe7e9-e5e5-4428-a828-aaf681f360d2')
 add_unit('モニカ', 410, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F410-01.webp?alt=media&token=be99502a-60a9-42b9-9fb8-9edbe00226cc', '')
 add_unit('ニノン', 415, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F415-01.webp?alt=media&token=26c9bca1-3bd7-439d-84eb-08b172c5e6b4', '')
-add_unit('ミフユ', 420, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F420-01.webp?alt=media&token=7ed3dece-89e9-49c4-ad11-238aed8b3727', '')
+add_unit('ミフユ', 420, 6, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F420-01.webp?alt=media&token=7ed3dece-89e9-49c4-ad11-238aed8b3727', 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F420-01-06.webp?alt=media&token=c77595d0-b0f4-4840-9f1d-dcedc4f96e0f')
 add_unit('イリヤ', 425, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F425-01.webp?alt=media&token=a78c2e48-ea9d-4691-a326-d44ff153a7ef', '')
 add_unit('サレン', 430, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F430-01.webp?alt=media&token=9489ae5e-5265-40da-bc7c-7ab1dfc44168', '')
 add_unit('シノブ (ハロウィン)', 440, 5, True, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F440-01.webp?alt=media&token=d1729e58-b051-4133-803b-b0342e42a11c', '')
@@ -148,9 +148,9 @@ add_unit('ニノン (オーエド)', 175, 5, False, 'https://firebasestorage.goo
 add_unit('レム', 540, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F540-01.webp?alt=media&token=04e31437-42df-4d68-8e58-7870ca0777cd', '')
 add_unit('ラム', 545, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F545-01.webp?alt=media&token=7edae85a-89d4-4b16-bae5-b4597a866227', '')
 add_unit('エミリア', 725, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F725-01.webp?alt=media&token=8506b624-79d4-4705-a7a4-7cc2df0251d6', '')
-add_unit('スズナ（サマー）', 705, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F705-02.webp?alt=media&token=bdd3209b-1c9a-4ba1-8f22-584785162485', '')
+add_unit('スズナ（サマー）', 705, 6, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F705-02.webp?alt=media&token=bdd3209b-1c9a-4ba1-8f22-584785162485', '')
 add_unit('イオ（サマー）', 715, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F715-02.webp?alt=media&token=48029f6f-dd86-4d05-b320-13b8ab72fdbd', '')
-add_unit('サレン（サマー）', 585, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F585-01.webp?alt=media&token=f8673ba8-0b09-45cf-92d2-f8fa776b5d2c', '')
+add_unit('サレン（サマー）', 585, 6, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F585-01.webp?alt=media&token=f8673ba8-0b09-45cf-92d2-f8fa776b5d2c', '')
 add_unit('マコト（サマー）', 180, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F185-02.webp?alt=media&token=9b78a4a3-3b2a-4c4f-8946-e3be68ecff48', '')
 add_unit('カオリ（サマー）', 425, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F425-02.webp?alt=media&token=c9bb5749-d27c-466e-8388-c0b39db5a1a2', '')
 add_unit('マホ（サマー）', 792, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F792-01.webp?alt=media&token=dd145b9d-9628-47de-9d00-2d656bd20546', '')
@@ -171,7 +171,6 @@ add_unit('コッコロ（ニューイヤー）', 159, 5, False, 'https://firebas
 add_unit('シオリ（マジカル）', 712, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F712-01.webp?alt=media&token=ada36818-e41d-4046-ac16-6b506f61a6d5', '')
 add_unit('カスミ（マジカル）', 730, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F730-02.webp?alt=media&token=5436f67a-6411-42ea-b189-ad37fd89a61d', '')
 add_unit('ペコリーヌ（プリンセス）', 155, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F155-02.webp?alt=media&token=cfba86e2-6aa8-4dd0-b10e-d7074eb5dd1f', '')
-
 add_unit('ウヅキ（デレマス）', 370, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F370-01.webp?alt=media&token=569ddf09-64ff-42af-a18b-10b5f5434265', '') #370-01
 add_unit('ミオ（デレマス）', 695, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F695-01.webp?alt=media&token=8ccc6efe-5f0c-4986-b2a5-eb00aeeb191b', '') #695-01
 add_unit('リン（デレマス）', 153, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F153-02.webp?alt=media&token=afd85b3b-4e2c-43d1-ae34-cf86e6a82b15', '') #153-02
@@ -179,5 +178,9 @@ add_unit('ユニ', 807, 5, False, 'https://firebasestorage.googleapis.com/v0/b/p
 add_unit('チエル', 222, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F220-01.webp?alt=media&token=c7fbdb01-216e-4094-b75b-621ef6345bc1', '') #222-01
 add_unit('リン（レンジャー）', 422, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F422-01.webp?alt=media&token=77fa7676-ce6e-460a-a3d8-5de898641e37', '') #422-01
 add_unit('マヒル（レンジャー）', 390, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F390-01.webp?alt=media&token=9dd4d97d-137b-443a-8314-43076abb57d9', '') #390-01
+
+add_unit('コッコロ（プリンセス）', 555, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F550-01.webp?alt=media&token=6e0fbbb1-dfd9-444c-b9d9-74e16192b64c', '') #555-01
+add_unit('アユミ（ワンダー）', 508, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F508-01.webp?alt=media&token=24707f96-e5af-43c0-b328-fcee923345fe', '') #508-01
+add_unit('リノ（ワンダー）', 730, 5, False, 'https://firebasestorage.googleapis.com/v0/b/priconnedb-public.appspot.com/o/unit%2F730-03.webp?alt=media&token=cee1e0c7-457c-4365-9142-5ca07d160fd6', '') #730-03
 
 units()
