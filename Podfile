@@ -14,6 +14,8 @@ target 'PriconneDB' do
   pod 'Firebase/Performance', :inhibit_warnings => true
   pod 'Firebase/Analytics', :inhibit_warnings => true
   pod 'Firebase/Auth', :inhibit_warnings => true
+  pod 'Firebase/RemoteConfig'
+  pod 'FirebaseInstanceID'
   pod 'Fabric', '~> 1.9.0', :inhibit_warnings => true
   pod 'Crashlytics', '~> 3.12.0', :inhibit_warnings => true
   pod 'Kingfisher', '~> 5.0'
