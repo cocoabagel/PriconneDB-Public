@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-#import <FirebaseRemoteConfig/FIRRemoteConfig.h>
+#import "FirebaseRemoteConfig/Sources/Public/FIRRemoteConfig.h"
 
-#import <FirebaseAnalyticsInterop/FIRAnalyticsInterop.h>
-#import <FirebaseRemoteConfig/RCNConfigSettings.h>
+#import "FirebaseRemoteConfig/Sources/Private/RCNConfigFetch.h"
+#import "FirebaseRemoteConfig/Sources/Private/RCNConfigSettings.h"
+#import "Interop/Analytics/Public/FIRAnalyticsInterop.h"
 
 @class FIROptions;
 @class RCNConfigContent;
@@ -33,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Internal settings
 @property(nonatomic, readonly, strong) RCNConfigSettings *settings;
+
+/// Config settings are custom settings.
+@property(nonatomic, readwrite, strong, nonnull) RCNConfigFetch *configFetch;
 
 /// Returns the FIRRemoteConfig instance for your namespace and for the default Firebase App.
 /// This singleton object contains the complete set of Remote Config parameter values available to
