@@ -38,7 +38,7 @@
 
 ## デモ動画
 
-<video src="asetts/video.mp4" controls width="300"></video>
+<video src="https://github.com/cocoabagel/PriconneDB-Public/blob/master/asetts/video.mp4" controls width="300"></video>
 
 ## 技術スタック
 
