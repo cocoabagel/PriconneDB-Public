@@ -9,36 +9,36 @@
 ### iPhone
 
 <p align="center">
-  <img src="asetts/iPhone_1.png" width="180" />
-  <img src="asetts/iPhone_2.png" width="180" />
-  <img src="asetts/iPhone_3.png" width="180" />
-  <img src="asetts/iPhone_4.png" width="180" />
+  <img src="assets/iPhone_1.png" width="180" />
+  <img src="assets/iPhone_2.png" width="180" />
+  <img src="assets/iPhone_3.png" width="180" />
+  <img src="assets/iPhone_4.png" width="180" />
 </p>
 
 <p align="center">
-  <img src="asetts/iPhone_5.png" width="180" />
-  <img src="asetts/iPhone_6.png" width="180" />
+  <img src="assets/iPhone_5.png" width="180" />
+  <img src="assets/iPhone_6.png" width="180" />
 </p>
 
 ### iPad
 
 <p align="center">
-  <img src="asetts/iPad_1.png" width="280" />
-  <img src="asetts/iPad_2.png" width="280" />
+  <img src="assets/iPad_1.png" width="280" />
+  <img src="assets/iPad_2.png" width="280" />
 </p>
 
 <p align="center">
-  <img src="asetts/iPad_3.png" width="280" />
-  <img src="asetts/iPad_4.png" width="280" />
+  <img src="assets/iPad_3.png" width="280" />
+  <img src="assets/iPad_4.png" width="280" />
 </p>
 
 <p align="center">
-  <img src="asetts/iPad_5.png" width="280" />
+  <img src="assets/iPad_5.png" width="280" />
 </p>
 
 ## デモ動画
 
-<video src="https://github.com/cocoabagel/PriconneDB-Public/blob/master/asetts/video.mp4" controls width="300"></video>
+![デモ動画](assets/video.mp4)
 
 ## 技術スタック
 
