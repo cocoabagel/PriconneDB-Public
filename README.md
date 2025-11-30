@@ -18,6 +18,8 @@
 <p align="center">
   <img src="assets/iPhone_5.png" width="180" />
   <img src="assets/iPhone_6.png" width="180" />
+  <img src="assets/iPhone_7.png" width="180" />
+  <img src="assets/iPhone_8.png" width="180" />
 </p>
 
 ### iPad
@@ -34,6 +36,7 @@
 
 <p align="center">
   <img src="assets/iPad_5.png" width="280" />
+  <img src="assets/iPad_6.png" width="280" />
 </p>
 
 ## デモ動画

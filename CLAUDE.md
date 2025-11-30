@@ -200,6 +200,34 @@ private extension FeatureView {
 - **Viewプロパティ**: セクションには `Section` サフィックス（例: `teamsSection`, `loadingSection`）
 - **バッキングプロパティ**: `_` プレフィックス（例: `_isLoading`）
 
+### フォント
+
+iOS標準のDynamic Type Styleを使用する。カスタムフォントサイズは使用しない。
+
+```swift
+// Good - 標準スタイルを使用
+Text("タイトル").font(.title)
+Text("本文").font(.body)
+Text("注釈").font(.caption)
+
+// Bad - カスタムサイズを使用
+Text("タイトル").font(.system(size: 28))
+```
+
+| Style | Weight | Size (default) | 用途 |
+|-------|--------|----------------|------|
+| `.largeTitle` | Regular | 34pt | 画面タイトル（大） |
+| `.title` | Regular | 28pt | 画面タイトル |
+| `.title2` | Regular | 22pt | セクションタイトル |
+| `.title3` | Regular | 20pt | サブセクションタイトル |
+| `.headline` | Semibold | 17pt | 強調テキスト |
+| `.body` | Regular | 17pt | 本文（デフォルト） |
+| `.callout` | Regular | 16pt | 補足説明 |
+| `.subheadline` | Regular | 15pt | 副見出し |
+| `.footnote` | Regular | 13pt | 脚注 |
+| `.caption` | Regular | 12pt | キャプション |
+| `.caption2` | Regular | 11pt | 小さいキャプション |
+
 ### SwiftLintルール
 
 設定ファイル: `.swiftlint.yml`（`only_rules`で明示的にルールを指定）
