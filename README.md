@@ -51,16 +51,20 @@
 | UI | SwiftUI (iOS 26+, Liquid Glass対応) |
 | アーキテクチャ | MVVM + Inputs/Outputs パターン |
 | データベース | Firebase Firestore |
+| ローカルキャッシュ | SwiftData |
 | 画像読み込み | Kingfisher + WebP対応 |
 | パッケージ管理 | Swift Package Manager |
-| CI/CD | Bitrise + fastlane |
-| コード品質 | SwiftLint, SwiftFormat, Sourcery |
+| CI/CD | Xcode Cloud, fastlane |
+| テスト | Swift Testing |
+| DI/モック生成 | Protocol + Sourcery |
+| コード品質 | SwiftLint, SwiftFormat |
 
 ## アーキテクチャ
 
 ### モジュール構成
 
-マルチモジュール構成でFeatureごとにパッケージを分割しています。
+マルチモジュール構成を採用し、Feature単位でパッケージを分割しています。
+共通のデータモデル（Entity）、通信層（Networking）、永続化（Storage）なども独立したモジュールとして切り出し、依存関係を明確にしています。
 
 ```
 Packages/
