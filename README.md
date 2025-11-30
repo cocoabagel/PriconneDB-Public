@@ -62,16 +62,19 @@
 ```
 Packages/
 ├── AppFeature/              # メインTabView、アプリのエントリーポイント
+├── AttackTeamListFeature/   # 攻撃チーム一覧機能
+├── CreateAttackTeamFeature/ # 攻撃チーム作成機能
+├── CreateDefenseTeamFeature/# 防衛チーム作成機能
 ├── DefenseTeamListFeature/  # 防衛チーム一覧機能
-├── AttackTeamListFeature/   # 攻略チーム一覧機能
-├── CreateAttackTeamFeature/ # 攻略チーム作成機能
-├── SearchViewFeature/       # ユニット検索・フィルター機能
+├── FilterUnitsFeature/      # ユニットフィルター機能
+├── SearchViewFeature/       # ユニット検索機能
 ├── Entity/                  # データモデル
 ├── Networking/              # Firestore クライアント
 ├── Storage/                 # UserDefaults永続化
 ├── SharedViews/             # 共通UIコンポーネント
 ├── Resources/               # 画像アセット
-└── Mocks/                   # テスト用モック（Sourcery生成）
+├── Mocks/                   # テスト用モック（Sourcery生成）
+└── MockSupport/             # モックサポートユーティリティ
 ```
 
 ### MVVM + Inputs/Outputs パターン

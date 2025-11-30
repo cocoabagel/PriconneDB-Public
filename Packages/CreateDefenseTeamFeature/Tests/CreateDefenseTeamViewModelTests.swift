@@ -17,11 +17,17 @@ struct CreateDefenseTeamViewModelTests {
     // MARK: - Setup
 
     let mockClient: FireStoreClientProtocolMock
+    let mockFilteredUnitsStorage: FilteredUnitsStorageProtocolMock
     let sut: CreateDefenseTeamViewModel
 
     init() {
         mockClient = FireStoreClientProtocolMock()
-        sut = CreateDefenseTeamViewModel(client: mockClient)
+        mockFilteredUnitsStorage = FilteredUnitsStorageProtocolMock()
+        mockFilteredUnitsStorage.loadReturnValue = []
+        sut = CreateDefenseTeamViewModel(
+            client: mockClient,
+            filteredUnitsStorage: mockFilteredUnitsStorage
+        )
     }
 
     // MARK: - fetchUnits
@@ -37,7 +43,7 @@ struct CreateDefenseTeamViewModelTests {
 
         // Then
         #expect(mockClient.fetchAllUnitsCallsCount == 1)
-        #expect(sut.outputs.allUnits.count == 2)
+        #expect(sut.outputs.filteredUnits.count == 2)
         #expect(sut.outputs.isLoading == false)
     }
 

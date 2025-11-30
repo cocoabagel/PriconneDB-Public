@@ -17,13 +17,17 @@ struct CreateAttackTeamSelectUnitsViewModelTests {
     // MARK: - Setup
 
     let mockClient: FireStoreClientProtocolMock
+    let mockFilteredUnitsStorage: FilteredUnitsStorageProtocolMock
     let sut: CreateAttackTeamSelectUnitsViewModel
 
     init() {
         mockClient = FireStoreClientProtocolMock()
+        mockFilteredUnitsStorage = FilteredUnitsStorageProtocolMock()
+        mockFilteredUnitsStorage.loadReturnValue = []
         sut = CreateAttackTeamSelectUnitsViewModel(
             defenseTeamId: "test-defense-id",
-            client: mockClient
+            client: mockClient,
+            filteredUnitsStorage: mockFilteredUnitsStorage
         )
     }
 
@@ -40,7 +44,7 @@ struct CreateAttackTeamSelectUnitsViewModelTests {
 
         // Then
         #expect(mockClient.fetchAllUnitsCallsCount == 1)
-        #expect(sut.outputs.allUnits.count == 2)
+        #expect(sut.outputs.filteredUnits.count == 2)
         #expect(sut.outputs.isLoading == false)
     }
 

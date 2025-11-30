@@ -45,9 +45,8 @@ mcp__XcodeBuildMCP__xcodebuild: プロジェクトをビルド
 
 3. **XcodeBuildMCPでビルド**: ビルドエラーがないか確認
    ```
-   mcp__XcodeBuildMCP__build_sim (scheme: PriconneDB, simulatorName: iPhone 17 Pro)
+   mcp__XcodeBuildMCP__build_sim (scheme: PriconneDB, simulatorName: iPhone 17)
    ```
-   ※ 最新のシミュレータを使用してください
 
 4. **ユニットテスト実行**: テストが通ることを確認
    ```bash
@@ -61,8 +60,8 @@ PriconneDBは、プリンセスコネクト Re:Dive プレイヤー向けのiOS�
 ## ビルドコマンド
 
 ```bash
-# プロジェクトを開く（.xcodeprojではなく必ずworkspaceを使用）
-open PriconneDB.xcworkspace
+# プロジェクトを開く
+open PriconneDB.xcodeproj
 
 # Xcodeでビルド
 # Cmd+B: ビルド
@@ -247,27 +246,35 @@ nonisolated(unsafe) private let cache: DefenseTeamCacheProtocol
 
 - `teams`: 防衛チーム編成
   - `members`: ユニット配列
-  - `memberNames`: ユニット名配列（array-contains検索用）
-  - `memberNamesKey`: position順ソート済みユニット名（前方一致検索用）
+  - `memberNames`: ユニット名配列
   - `lastUpdated`: 更新日時
 - `units`: ユニットマスタ
 
-### Firestoreクエリパターン
+### SwiftData キャッシュ
+
+Firestoreでは部分一致検索がサポートされていないため、SwiftDataを使用してローカルキャッシュを構築し、部分検索を実現しています。
 
 ```swift
-// 前方一致検索
-let prefix = filterUnitNames.joined(separator: ",")
-let prefixEnd = prefix + "\u{f8ff}"
-query = query
-    .whereField("memberNamesKey", isGreaterThanOrEqualTo: prefix)
-    .whereField("memberNamesKey", isLessThan: prefixEnd)
+// DefenseTeamCache: SwiftDataによるキャッシュ実装
+@ModelActor
+public actor DefenseTeamCache: DefenseTeamCacheProtocol {
+    // メモリ上でフィルタリング（部分一致検索）
+    public func search(memberNames: [String]) -> [DefenseTeam] {
+        let cached = try? modelContext.fetch(descriptor)
+        return cached.filter { team in
+            memberNames.allSatisfy { name in
+                team.memberNames.contains(name)
+            }
+        }
+    }
+}
 ```
 
 ### Firestore制約
 
 - 不等式フィルタは1フィールドのみ
 - `array-contains` は1クエリに1つ
-- 不等式使用時は同じフィールドで `orderBy` 必須
+- 部分一致検索は非サポート → SwiftDataで対応
 
 ## UIパターン
 
