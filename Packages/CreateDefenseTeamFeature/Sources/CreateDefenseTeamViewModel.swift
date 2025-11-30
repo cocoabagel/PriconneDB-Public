@@ -9,11 +9,13 @@ import Entity
 import Networking
 import Observation
 import SharedViews
+import Storage
 import SwiftUI
 
 @MainActor
 protocol CreateDefenseTeamViewModelInputs {
     func fetchUnits() async
+    func applyFilter()
     func toggleSelection(_ unit: GameUnit)
     func removeSelection(_ unit: GameUnit)
     func saveTeam() async -> Bool
@@ -21,11 +23,12 @@ protocol CreateDefenseTeamViewModelInputs {
 
 @MainActor
 protocol CreateDefenseTeamViewModelOutputs {
-    var allUnits: [GameUnit] { get }
+    var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
     var isLoading: Bool { get }
     var isSaving: Bool { get }
     var canProceed: Bool { get }
+    var hasFilter: Bool { get }
     var toastMessage: Binding<ToastMessage?> { get }
 }
 
@@ -39,9 +42,11 @@ protocol CreateDefenseTeamViewModelType: CreateDefenseTeamViewModelInputs, Creat
 @Observable
 final class CreateDefenseTeamViewModel: CreateDefenseTeamViewModelType {
     private let client: FireStoreClientProtocol
+    private let filteredUnitsStorage: FilteredUnitsStorageProtocol
     private let maxSelection = 5
 
     private var _allUnits: [GameUnit] = []
+    private var _filteredUnits: [GameUnit] = []
     private var _selectedUnits: [GameUnit] = []
     private var _isLoading = false
     private var _isSaving = false
@@ -50,8 +55,12 @@ final class CreateDefenseTeamViewModel: CreateDefenseTeamViewModelType {
     var inputs: CreateDefenseTeamViewModelInputs { self }
     var outputs: CreateDefenseTeamViewModelOutputs { self }
 
-    init(client: FireStoreClientProtocol = FireStoreClient()) {
+    init(
+        client: FireStoreClientProtocol = FireStoreClient(),
+        filteredUnitsStorage: FilteredUnitsStorageProtocol = FilteredUnitsStorage()
+    ) {
         self.client = client
+        self.filteredUnitsStorage = filteredUnitsStorage
     }
 }
 
@@ -64,8 +73,18 @@ extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelInputs {
         do {
             defer { _isLoading = false }
             _allUnits = try await client.fetchAllUnits()
+            applyFilter()
         } catch {
             _toastMessage = ToastMessage(message: "ユニットの取得に失敗しました", style: .error)
+        }
+    }
+
+    func applyFilter() {
+        let filterNames = Set(filteredUnitsStorage.load())
+        if filterNames.isEmpty {
+            _filteredUnits = _allUnits
+        } else {
+            _filteredUnits = _allUnits.filter { filterNames.contains($0.name) }
         }
     }
 
@@ -98,8 +117,8 @@ extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelInputs {
 
 // MARK: - CreateDefenseTeamViewModelOutputs
 extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelOutputs {
-    var allUnits: [GameUnit] {
-        _allUnits
+    var filteredUnits: [GameUnit] {
+        _filteredUnits
     }
 
     var selectedUnits: [GameUnit] {
@@ -116,6 +135,10 @@ extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelOutputs {
 
     var canProceed: Bool {
         !_selectedUnits.isEmpty
+    }
+
+    var hasFilter: Bool {
+        !filteredUnitsStorage.load().isEmpty
     }
 
     var toastMessage: Binding<ToastMessage?> {

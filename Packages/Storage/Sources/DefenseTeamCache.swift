@@ -102,4 +102,22 @@ public extension DefenseTeamCache {
         let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         return try ModelContainer(for: schema, configurations: [config])
     }
+
+    static func createInMemoryModelContainer() throws -> ModelContainer {
+        let schema = Schema([CachedDefenseTeam.self])
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        return try ModelContainer(for: schema, configurations: [config])
+    }
+}
+
+// MARK: - NoOp Cache (Fallback)
+/// キャッシュが利用できない場合のフォールバック実装
+public actor NoOpDefenseTeamCache: DefenseTeamCacheProtocol {
+    public init() {}
+
+    public func save(_: [DefenseTeam]) throws {}
+    public func fetchAll() -> [DefenseTeam] { [] }
+    public func search(memberNames _: [String]) -> [DefenseTeam] { [] }
+    public func delete(id _: String) throws {}
+    public func clear() throws {}
 }

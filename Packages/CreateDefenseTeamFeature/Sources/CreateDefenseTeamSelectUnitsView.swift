@@ -6,6 +6,7 @@
 //
 
 import Entity
+import FilterUnitsFeature
 import SharedViews
 import SwiftUI
 
@@ -13,11 +14,12 @@ struct CreateDefenseTeamSelectUnitsView: View {
     @Bindable var viewModel: CreateDefenseTeamViewModel
     @Environment(\.dismiss)
     private var dismiss
+    @State private var showFilterView = false
     let onSave: () -> Void
 
     var body: some View {
         UnitsGridView(
-            units: viewModel.outputs.allUnits,
+            units: viewModel.outputs.filteredUnits,
             selectedUnits: viewModel.outputs.selectedUnits
         ) { unit in
             viewModel.inputs.toggleSelection(unit)
@@ -41,15 +43,31 @@ struct CreateDefenseTeamSelectUnitsView: View {
             }
 
             ToolbarItem(placement: .topBarTrailing) {
-                Button("保存") {
-                    Task {
-                        let success = await viewModel.inputs.saveTeam()
-                        if success {
-                            onSave()
+                HStack(spacing: 16.0) {
+                    Button {
+                        showFilterView = true
+                    } label: {
+                        Image(systemName: viewModel.outputs.hasFilter ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                            .font(.title2)
+                    }
+
+                    Button("保存") {
+                        Task {
+                            let success = await viewModel.inputs.saveTeam()
+                            if success {
+                                onSave()
+                            }
                         }
                     }
+                    .disabled(!viewModel.outputs.canProceed || viewModel.outputs.isSaving)
                 }
-                .disabled(!viewModel.outputs.canProceed || viewModel.outputs.isSaving)
+            }
+        }
+        .sheet(isPresented: $showFilterView) {
+            viewModel.inputs.applyFilter()
+        } content: {
+            NavigationStack {
+                FilterUnitsView()
             }
         }
         .task {

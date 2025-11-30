@@ -83,5 +83,6 @@ iOSInjectionProject/
 
 # Firebase
 GoogleService-Info.plist
+firebase-debug.log
 
 # End of https://www.gitignore.io/api/swift

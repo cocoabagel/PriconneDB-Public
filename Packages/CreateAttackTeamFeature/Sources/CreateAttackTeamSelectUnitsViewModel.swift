@@ -9,11 +9,13 @@ import Entity
 import Networking
 import Observation
 import SharedViews
+import Storage
 import SwiftUI
 
 @MainActor
 protocol CreateAttackTeamSelectUnitsViewModelInputs {
     func fetchUnits() async
+    func applyFilter()
     func toggleSelection(_ unit: GameUnit)
     func removeSelection(_ unit: GameUnit)
     func updateRemarks(_ remarks: String)
@@ -22,12 +24,13 @@ protocol CreateAttackTeamSelectUnitsViewModelInputs {
 
 @MainActor
 protocol CreateAttackTeamSelectUnitsViewModelOutputs {
-    var allUnits: [GameUnit] { get }
+    var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
     var remarks: String { get }
     var isLoading: Bool { get }
     var isSaving: Bool { get }
     var canProceed: Bool { get }
+    var hasFilter: Bool { get }
     var toastMessage: Binding<ToastMessage?> { get }
 }
 
@@ -41,10 +44,12 @@ protocol CreateAttackTeamSelectUnitsViewModelType: CreateAttackTeamSelectUnitsVi
 @Observable
 final class CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewModelType {
     private let client: FireStoreClientProtocol
+    private let filteredUnitsStorage: FilteredUnitsStorageProtocol
     private let defenseTeamId: String
     private let maxSelection = 5
 
     private var _allUnits: [GameUnit] = []
+    private var _filteredUnits: [GameUnit] = []
     private var _selectedUnits: [GameUnit] = []
     private var _remarks: String = ""
     private var _isLoading = false
@@ -54,9 +59,14 @@ final class CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsVie
     var inputs: CreateAttackTeamSelectUnitsViewModelInputs { self }
     var outputs: CreateAttackTeamSelectUnitsViewModelOutputs { self }
 
-    init(defenseTeamId: String, client: FireStoreClientProtocol = FireStoreClient()) {
+    init(
+        defenseTeamId: String,
+        client: FireStoreClientProtocol = FireStoreClient(),
+        filteredUnitsStorage: FilteredUnitsStorageProtocol = FilteredUnitsStorage()
+    ) {
         self.defenseTeamId = defenseTeamId
         self.client = client
+        self.filteredUnitsStorage = filteredUnitsStorage
     }
 }
 
@@ -69,8 +79,18 @@ extension CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewM
         do {
             defer { _isLoading = false }
             _allUnits = try await client.fetchAllUnits()
+            applyFilter()
         } catch {
             _toastMessage = ToastMessage(message: "ユニットの取得に失敗しました", style: .error)
+        }
+    }
+
+    func applyFilter() {
+        let filterNames = Set(filteredUnitsStorage.load())
+        if filterNames.isEmpty {
+            _filteredUnits = _allUnits
+        } else {
+            _filteredUnits = _allUnits.filter { filterNames.contains($0.name) }
         }
     }
 
@@ -112,8 +132,8 @@ extension CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewM
 
 // MARK: - CreateAttackTeamSelectUnitsViewModelOutputs
 extension CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewModelOutputs {
-    var allUnits: [GameUnit] {
-        _allUnits
+    var filteredUnits: [GameUnit] {
+        _filteredUnits
     }
 
     var selectedUnits: [GameUnit] {
@@ -134,6 +154,10 @@ extension CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewM
 
     var canProceed: Bool {
         !_selectedUnits.isEmpty
+    }
+
+    var hasFilter: Bool {
+        !filteredUnitsStorage.load().isEmpty
     }
 
     var toastMessage: Binding<ToastMessage?> {

@@ -5,5 +5,8 @@
 --closingparen balanced
 --wrapcollections beforefirst
 
+# Modifier order (SwiftLintと一致)
+--modifierorder nonisolated,private,fileprivate,internal,public,open,final,static,class,required,convenience,override,lazy,weak,unowned,dynamic
+
 # 除外ルール
 --disable blankLinesAtEndOfScope,blankLinesAtStartOfScope,strongOutlets,hoistPatternLet,trailingCommas,blankLinesAroundMark,spaceAroundOperators,blankLinesBetweenScopes,andOperator,redundantExtensionACL,wrap,redundantReturn,strongifiedSelf,preferForLoop

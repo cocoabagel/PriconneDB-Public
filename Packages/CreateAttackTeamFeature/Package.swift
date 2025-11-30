@@ -15,19 +15,23 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Entity"),
+        .package(path: "../FilterUnitsFeature"),
         .package(path: "../Mocks"),
         .package(path: "../Networking"),
         .package(path: "../Resources"),
         .package(path: "../SharedViews"),
+        .package(path: "../Storage"),
     ],
     targets: [
         .target(
             name: "CreateAttackTeamFeature",
             dependencies: [
                 "Entity",
+                "FilterUnitsFeature",
                 "Networking",
                 "Resources",
                 "SharedViews",
+                "Storage",
             ],
             path: "Sources"
         ),

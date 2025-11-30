@@ -10,7 +10,6 @@ import Networking
 import Observation
 import SharedViews
 import Storage
-import SwiftData
 import SwiftUI
 
 @MainActor
@@ -63,11 +62,13 @@ final class DefenseTeamListViewModel: DefenseTeamListViewModelType {
     }
 
     private static func createFallbackCache() -> DefenseTeamCacheProtocol {
-        // フォールバック用のインメモリキャッシュ
-        let schema = Schema([CachedDefenseTeam.self])
-        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-        let container = try! ModelContainer(for: schema, configurations: [config])
-        return DefenseTeamCache(modelContainer: container)
+        // フォールバック用のインメモリキャッシュ、失敗時はNoOpキャッシュを返す
+        do {
+            let container = try DefenseTeamCache.createInMemoryModelContainer()
+            return DefenseTeamCache(modelContainer: container)
+        } catch {
+            return NoOpDefenseTeamCache()
+        }
     }
 }
 
