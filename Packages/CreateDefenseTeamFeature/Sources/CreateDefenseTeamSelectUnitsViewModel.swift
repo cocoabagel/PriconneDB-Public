@@ -1,5 +1,5 @@
 //
-//  CreateDefenseTeamViewModel.swift
+//  CreateDefenseTeamSelectUnitsViewModel.swift
 //  CreateDefenseTeamFeature
 //
 //  Created by Kazutoshi Baba on 2025/11/27.
@@ -13,7 +13,7 @@ import Storage
 import SwiftUI
 
 @MainActor
-protocol CreateDefenseTeamViewModelInputs {
+protocol CreateDefenseTeamSelectUnitsViewModelInputs {
     func fetchUnits() async
     func applyFilter()
     func toggleSelection(_ unit: GameUnit)
@@ -22,7 +22,7 @@ protocol CreateDefenseTeamViewModelInputs {
 }
 
 @MainActor
-protocol CreateDefenseTeamViewModelOutputs {
+protocol CreateDefenseTeamSelectUnitsViewModelOutputs {
     var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
     var isLoading: Bool { get }
@@ -33,14 +33,15 @@ protocol CreateDefenseTeamViewModelOutputs {
 }
 
 @MainActor
-protocol CreateDefenseTeamViewModelType: CreateDefenseTeamViewModelInputs, CreateDefenseTeamViewModelOutputs {
-    var inputs: CreateDefenseTeamViewModelInputs { get }
-    var outputs: CreateDefenseTeamViewModelOutputs { get }
+protocol CreateDefenseTeamSelectUnitsViewModelType: CreateDefenseTeamSelectUnitsViewModelInputs,
+    CreateDefenseTeamSelectUnitsViewModelOutputs {
+    var inputs: CreateDefenseTeamSelectUnitsViewModelInputs { get }
+    var outputs: CreateDefenseTeamSelectUnitsViewModelOutputs { get }
 }
 
 @MainActor
 @Observable
-final class CreateDefenseTeamViewModel: CreateDefenseTeamViewModelType {
+final class CreateDefenseTeamSelectUnitsViewModel: CreateDefenseTeamSelectUnitsViewModelType {
     private let client: FireStoreClientProtocol
     private let filteredUnitsStorage: FilteredUnitsStorageProtocol
     private let maxSelection = 5
@@ -52,8 +53,8 @@ final class CreateDefenseTeamViewModel: CreateDefenseTeamViewModelType {
     private var _isSaving = false
     private var _toastMessage: ToastMessage?
 
-    var inputs: CreateDefenseTeamViewModelInputs { self }
-    var outputs: CreateDefenseTeamViewModelOutputs { self }
+    var inputs: CreateDefenseTeamSelectUnitsViewModelInputs { self }
+    var outputs: CreateDefenseTeamSelectUnitsViewModelOutputs { self }
 
     init(
         client: FireStoreClientProtocol = FireStoreClient(),
@@ -64,8 +65,8 @@ final class CreateDefenseTeamViewModel: CreateDefenseTeamViewModelType {
     }
 }
 
-// MARK: - CreateDefenseTeamViewModelInputs
-extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelInputs {
+// MARK: - CreateDefenseTeamSelectUnitsViewModelInputs
+extension CreateDefenseTeamSelectUnitsViewModel {
     func fetchUnits() async {
         guard !_isLoading else { return }
 
@@ -115,8 +116,8 @@ extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelInputs {
     }
 }
 
-// MARK: - CreateDefenseTeamViewModelOutputs
-extension CreateDefenseTeamViewModel: CreateDefenseTeamViewModelOutputs {
+// MARK: - CreateDefenseTeamSelectUnitsViewModelOutputs
+extension CreateDefenseTeamSelectUnitsViewModel {
     var filteredUnits: [GameUnit] {
         _filteredUnits
     }

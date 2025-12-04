@@ -7,17 +7,23 @@
 
 import Entity
 import FilterUnitsFeature
+import Resources
 import SharedViews
 import SwiftUI
 
-struct CreateDefenseTeamSelectUnitsView: View {
-    @Bindable var viewModel: CreateDefenseTeamViewModel
+public struct CreateDefenseTeamSelectUnitsView: View {
+    @State private var viewModel: CreateDefenseTeamSelectUnitsViewModelType = CreateDefenseTeamSelectUnitsViewModel()
     @Environment(\.dismiss)
     private var dismiss
     @State private var showFilterView = false
-    let onSave: () -> Void
 
-    var body: some View {
+    private let onSave: () -> Void
+
+    public init(onSave: @escaping () -> Void) {
+        self.onSave = onSave
+    }
+
+    public var body: some View {
         UnitsGridView(
             units: viewModel.outputs.filteredUnits,
             selectedUnits: viewModel.outputs.selectedUnits
@@ -56,6 +62,7 @@ struct CreateDefenseTeamSelectUnitsView: View {
                             let success = await viewModel.inputs.saveTeam()
                             if success {
                                 onSave()
+                                dismiss()
                             }
                         }
                     }

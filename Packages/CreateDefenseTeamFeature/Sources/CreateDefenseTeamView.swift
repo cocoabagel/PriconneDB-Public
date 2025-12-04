@@ -8,10 +8,6 @@
 import SwiftUI
 
 public struct CreateDefenseTeamView: View {
-    @State private var viewModel = CreateDefenseTeamViewModel()
-    @Environment(\.dismiss)
-    private var dismiss
-
     private let onSave: () -> Void
 
     public init(onSave: @escaping () -> Void = {}) {
@@ -20,10 +16,7 @@ public struct CreateDefenseTeamView: View {
 
     public var body: some View {
         NavigationStack {
-            CreateDefenseTeamSelectUnitsView(viewModel: viewModel) {
-                onSave()
-                dismiss()
-            }
+            CreateDefenseTeamSelectUnitsView(onSave: onSave)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CreateDefenseTeamViewModelTests.swift
+//  CreateDefenseTeamSelectUnitsViewModelTests.swift
 //  CreateDefenseTeamFeature
 //
 //  Created by Kazutoshi Baba on 2025/11/29.
@@ -13,18 +13,18 @@ import Testing
 
 @Suite
 @MainActor
-struct CreateDefenseTeamViewModelTests {
+struct CreateDefenseTeamSelectUnitsViewModelTests {
     // MARK: - Setup
 
     let mockClient: FireStoreClientProtocolMock
     let mockFilteredUnitsStorage: FilteredUnitsStorageProtocolMock
-    let sut: CreateDefenseTeamViewModel
+    let sut: CreateDefenseTeamSelectUnitsViewModel
 
     init() {
         mockClient = FireStoreClientProtocolMock()
         mockFilteredUnitsStorage = FilteredUnitsStorageProtocolMock()
         mockFilteredUnitsStorage.loadReturnValue = []
-        sut = CreateDefenseTeamViewModel(
+        sut = CreateDefenseTeamSelectUnitsViewModel(
             client: mockClient,
             filteredUnitsStorage: mockFilteredUnitsStorage
         )
