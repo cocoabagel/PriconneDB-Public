@@ -13,7 +13,7 @@ import SharedViews
 import SwiftUI
 
 public struct DefenseTeamListView: View {
-    @State private var viewModel = DefenseTeamListViewModel()
+    @State private var viewModel: DefenseTeamListViewModelType = DefenseTeamListViewModel()
     @State private var showCreateTeam = false
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass

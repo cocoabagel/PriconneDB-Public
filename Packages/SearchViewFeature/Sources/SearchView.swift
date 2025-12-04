@@ -11,7 +11,7 @@ import SharedViews
 import SwiftUI
 
 public struct SearchView: View {
-    @State private var viewModel = SearchViewModel()
+    @State private var viewModel: SearchViewModelType = SearchViewModel()
     @State private var showFilterView = false
 
     public init() {}

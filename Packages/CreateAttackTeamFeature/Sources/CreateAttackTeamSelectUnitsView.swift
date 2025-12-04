@@ -12,7 +12,7 @@ import SharedViews
 import SwiftUI
 
 public struct CreateAttackTeamSelectUnitsView: View {
-    @State private var viewModel: CreateAttackTeamSelectUnitsViewModel
+    @State private var viewModel: CreateAttackTeamSelectUnitsViewModelType
     @Environment(\.dismiss)
     private var dismiss
     @State private var showFilterView = false

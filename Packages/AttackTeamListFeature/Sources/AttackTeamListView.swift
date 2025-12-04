@@ -7,12 +7,11 @@
 
 import CreateAttackTeamFeature
 import Entity
-import Resources
 import SharedViews
 import SwiftUI
 
 public struct AttackTeamListView: View {
-    @State private var viewModel: AttackTeamListViewModel
+    @State private var viewModel: AttackTeamListViewModelType
     @State private var showCreateAttackTeam = false
     @Environment(\.dismiss)
     private var dismiss

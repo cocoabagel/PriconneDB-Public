@@ -10,7 +10,7 @@ import SharedViews
 import SwiftUI
 
 public struct FilterUnitsView: View {
-    @State private var viewModel = FilterUnitsViewModel()
+    @State private var viewModel: FilterUnitsViewModelType = FilterUnitsViewModel()
     @Environment(\.dismiss)
     private var dismiss
 
