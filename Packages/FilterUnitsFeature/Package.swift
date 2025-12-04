@@ -18,7 +18,7 @@ let package = Package(
         .package(path: "../Mocks"),
         .package(path: "../Networking"),
         .package(path: "../SharedViews"),
-        .package(path: "../Storage"),
+        .package(path: "../Storage")
     ],
     targets: [
         .target(
@@ -27,7 +27,7 @@ let package = Package(
                 "Entity",
                 "Networking",
                 "SharedViews",
-                "Storage",
+                "Storage"
             ],
             path: "Sources"
         ),

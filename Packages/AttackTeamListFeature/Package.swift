@@ -19,7 +19,7 @@ let package = Package(
         .package(path: "../Mocks"),
         .package(path: "../Networking"),
         .package(path: "../Resources"),
-        .package(path: "../SharedViews"),
+        .package(path: "../SharedViews")
     ],
     targets: [
         .target(
@@ -29,7 +29,7 @@ let package = Package(
                 "Entity",
                 "Networking",
                 "Resources",
-                "SharedViews",
+                "SharedViews"
             ],
             path: "Sources"
         ),

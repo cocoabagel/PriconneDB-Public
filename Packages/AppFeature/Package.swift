@@ -15,14 +15,14 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../DefenseTeamListFeature"),
-        .package(path: "../SearchViewFeature"),
+        .package(path: "../SearchViewFeature")
     ],
     targets: [
         .target(
             name: "AppFeature",
             dependencies: [
                 "DefenseTeamListFeature",
-                "SearchViewFeature",
+                "SearchViewFeature"
             ],
             path: "Sources"
         )

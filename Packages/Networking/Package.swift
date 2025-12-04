@@ -19,7 +19,7 @@ let package = Package(
             from: "12.6.0"
         ),
         .package(path: "../Entity"),
-        .package(path: "../MockSupport"),
+        .package(path: "../MockSupport")
     ],
     targets: [
         .target(
@@ -27,7 +27,7 @@ let package = Package(
             dependencies: [
                 .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
                 "Entity",
-                "MockSupport",
+                "MockSupport"
             ],
             path: "Sources"
         ),

@@ -17,7 +17,7 @@ let package = Package(
         .package(path: "../Entity"),
         .package(path: "../Resources"),
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.2"),
-        .package(url: "https://github.com/yeatse/KingfisherWebP.git", from: "1.7.2"),
+        .package(url: "https://github.com/yeatse/KingfisherWebP.git", from: "1.7.2")
     ],
     targets: [
         .target(
@@ -26,7 +26,7 @@ let package = Package(
                 "Entity",
                 "Resources",
                 .product(name: "Kingfisher", package: "Kingfisher"),
-                .product(name: "KingfisherWebP", package: "KingfisherWebP"),
+                .product(name: "KingfisherWebP", package: "KingfisherWebP")
             ],
             path: "Sources"
         )

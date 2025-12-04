@@ -20,7 +20,7 @@ let package = Package(
         .package(path: "../Networking"),
         .package(path: "../Resources"),
         .package(path: "../SharedViews"),
-        .package(path: "../Storage"),
+        .package(path: "../Storage")
     ],
     targets: [
         .target(
@@ -31,7 +31,7 @@ let package = Package(
                 "Networking",
                 "Resources",
                 "SharedViews",
-                "Storage",
+                "Storage"
             ],
             path: "Sources"
         ),

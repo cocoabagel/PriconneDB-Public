@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Entity"),
-        .package(path: "../MockSupport"),
+        .package(path: "../MockSupport")
     ],
     targets: [
         .target(
