@@ -19,7 +19,7 @@ public struct StarRankView: View {
 
     public var body: some View {
         HStack(spacing: 0.0) {
-            ForEach(0..<min(starRank, 6), id: \.self) { index in
+            ForEach(0 ..< min(starRank, 6), id: \.self) { index in
                 starImage(for: index)
             }
             if hasUniqueEquipment {

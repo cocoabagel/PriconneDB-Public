@@ -66,6 +66,16 @@ platform :ios do
     end
   end
 
+  desc "Increment build number"
+  lane :bump_build_number do
+    increment_build_number(
+      xcodeproj: "PriconneDB.xcodeproj"
+    )
+
+    build_number = get_build_number(xcodeproj: "PriconneDB.xcodeproj")
+    UI.success("🔢 Build number incremented to #{build_number}")
+  end
+
   desc "Run unit tests for a specific module (usage: fastlane test_module module:ModuleName)"
   lane :test_module do |options|
     module_name = options[:module]

@@ -85,7 +85,7 @@ struct CreateAttackTeamSelectUnitsViewModelTests {
     @Test
     func toggleSelectionMaxLimit() async {
         // Given
-        let units = (1...6).map { GameUnit.stub(name: "Unit\($0)", position: $0) }
+        let units = (1 ... 6).map { GameUnit.stub(name: "Unit\($0)", position: $0) }
         mockClient.fetchAllUnitsReturnValue = units
         await sut.inputs.fetchUnits()
 

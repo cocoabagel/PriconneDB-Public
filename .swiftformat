@@ -1,12 +1,60 @@
---exclude Packages/Mocks/Sources/Generated
---stripunusedargs closure-only
---decimalgrouping 3
---wraparguments beforefirst
---closingparen balanced
---wrapcollections beforefirst
+# SwiftFormat設定 (SwiftLintと一致)
+# ドキュメント: https://github.com/nicklockwood/SwiftFormat/blob/main/Rules.md
 
-# Modifier order (SwiftLintと一致)
+# 除外パス
+--exclude Packages/Mocks/Sources/Generated
+--exclude bin/UpdateMetadata
+
+# インデント (indentation_width対応)
+--indent 4
+--indentcase false
+--ifdef no-indent
+
+# 行の長さ (line_length対応: warning 195, error 210)
+--maxwidth 195
+
+# import文のソート (sorted_imports対応)
+--importgrouping alpha
+
+# 引数の折り返し (multiline_arguments, multiline_parameters対応)
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+
+# クロージャ (trailing_closure対応)
+--trailingclosures
+
+# self (redundant_self_in_closure対応: 省略可能な場合は省略)
+--self remove
+
+# Modifier順序 (modifier_order対応)
 --modifierorder nonisolated,private,fileprivate,internal,public,open,final,static,class,required,convenience,override,lazy,weak,unowned,dynamic
 
+# 属性の配置 (attributes対応: 引数付きattributesは別行に)
+--funcattributes prev-line
+--typeattributes prev-line
+--varattributes prev-line
+
+# 数値のグルーピング (number_separator対応)
+--decimalgrouping 3
+--binarygrouping none
+--octalgrouping none
+--hexgrouping none
+
+# 未使用引数 (unused_parameter対応)
+--stripunusedargs closure-only
+
+# 空白 (vertical_whitespace_between_cases対応)
+--lineaftermarks false
+
 # 除外ルール
---disable blankLinesAtEndOfScope,blankLinesAtStartOfScope,strongOutlets,hoistPatternLet,trailingCommas,blankLinesAroundMark,spaceAroundOperators,blankLinesBetweenScopes,andOperator,redundantExtensionACL,wrap,redundantReturn,strongifiedSelf,preferForLoop
+--disable strongOutlets
+--disable hoistPatternLet
+--disable trailingCommas
+--disable andOperator
+--disable redundantExtensionACL
+--disable wrap
+--disable strongifiedSelf
+--disable preferForLoop
+--disable wrapMultilineStatementBraces
