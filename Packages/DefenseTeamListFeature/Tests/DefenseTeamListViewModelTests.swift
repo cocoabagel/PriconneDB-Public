@@ -19,7 +19,7 @@ struct DefenseTeamListViewModelTests {
     let mockClient: FireStoreClientProtocolMock
     let mockCache: DefenseTeamCacheProtocolMock
     let mockStorage: SelectedUnitsStorageProtocolMock
-    let sut: DefenseTeamListViewModel
+    let sut: DefenseTeamListViewModelType
 
     init() {
         mockClient = FireStoreClientProtocolMock()

@@ -19,7 +19,7 @@ struct SearchViewModelTests {
     let mockClient: FireStoreClientProtocolMock
     let mockSelectedStorage: SelectedUnitsStorageProtocolMock
     let mockFilteredStorage: FilteredUnitsStorageProtocolMock
-    let sut: SearchViewModel
+    let sut: SearchViewModelType
 
     init() {
         mockClient = FireStoreClientProtocolMock()

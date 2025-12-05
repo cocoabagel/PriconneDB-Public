@@ -18,7 +18,7 @@ struct CreateAttackTeamSelectUnitsViewModelTests {
 
     let mockClient: FireStoreClientProtocolMock
     let mockFilteredUnitsStorage: FilteredUnitsStorageProtocolMock
-    let sut: CreateAttackTeamSelectUnitsViewModel
+    let sut: CreateAttackTeamSelectUnitsViewModelType
 
     init() {
         mockClient = FireStoreClientProtocolMock()
