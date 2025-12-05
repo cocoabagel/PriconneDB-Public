@@ -66,7 +66,7 @@ platform :ios do
     end
   end
 
-  desc "Increment build number"
+  desc "Increment build number and commit"
   lane :bump_build_number do
     increment_build_number(
       xcodeproj: "PriconneDB.xcodeproj"
@@ -74,6 +74,13 @@ platform :ios do
 
     build_number = get_build_number(xcodeproj: "PriconneDB.xcodeproj")
     UI.success("🔢 Build number incremented to #{build_number}")
+
+    git_add(path: ".")
+    git_commit(
+      path: ".",
+      message: "version++"
+    )
+    UI.success("📦 Committed with message: version++")
   end
 
   desc "Run unit tests for a specific module (usage: fastlane test_module module:ModuleName)"

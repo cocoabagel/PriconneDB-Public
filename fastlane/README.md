@@ -29,7 +29,7 @@ Run unit tests for all feature modules
 [bundle exec] fastlane ios bump_build_number
 ```
 
-Increment build number
+Increment build number and commit
 
 ### ios test_module
 
