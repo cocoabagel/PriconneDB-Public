@@ -5,7 +5,6 @@
 //  Created by Kazutoshi Baba on 2025/11/28.
 //
 
-import Entity
 import FilterUnitsFeature
 import Resources
 import SharedViews

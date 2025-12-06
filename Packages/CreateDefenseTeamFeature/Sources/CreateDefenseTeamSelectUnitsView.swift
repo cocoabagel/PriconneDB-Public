@@ -5,13 +5,12 @@
 //  Created by Kazutoshi Baba on 2025/11/27.
 //
 
-import Entity
 import FilterUnitsFeature
 import Resources
 import SharedViews
 import SwiftUI
 
-public struct CreateDefenseTeamSelectUnitsView: View {
+struct CreateDefenseTeamSelectUnitsView: View {
     @State private var viewModel: CreateDefenseTeamSelectUnitsViewModelType = CreateDefenseTeamSelectUnitsViewModel()
     @Environment(\.dismiss)
     private var dismiss
@@ -19,11 +18,11 @@ public struct CreateDefenseTeamSelectUnitsView: View {
 
     private let onSave: () -> Void
 
-    public init(onSave: @escaping () -> Void) {
+    init(onSave: @escaping () -> Void) {
         self.onSave = onSave
     }
 
-    public var body: some View {
+    var body: some View {
         UnitsGridView(
             units: viewModel.outputs.filteredUnits,
             selectedUnits: viewModel.outputs.selectedUnits

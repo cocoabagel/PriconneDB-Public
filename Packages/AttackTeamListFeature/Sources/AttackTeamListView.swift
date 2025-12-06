@@ -69,6 +69,11 @@ public struct AttackTeamListView: View {
         .task {
             await viewModel.inputs.fetchAttackTeams()
         }
+        .onChange(of: viewModel.outputs.errorMessage) { _, errorMessage in
+            if let errorMessage {
+                onShowToast?(ToastMessage(message: errorMessage, style: .error))
+            }
+        }
     }
 }
 

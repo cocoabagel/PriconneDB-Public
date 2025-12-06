@@ -8,8 +8,6 @@
 import Entity
 import Networking
 import Observation
-import SharedViews
-import SwiftUI
 
 @MainActor
 protocol AttackTeamListViewModelInputs {
@@ -18,15 +16,13 @@ protocol AttackTeamListViewModelInputs {
     func deleteAttackTeam(_ attackTeam: AttackTeam) async
     func likeAttackTeam(_ attackTeam: AttackTeam) async
     func dislikeAttackTeam(_ attackTeam: AttackTeam) async
-    func showSaveSuccessToast()
 }
 
 @MainActor
 protocol AttackTeamListViewModelOutputs {
     var defenseTeam: DefenseTeam { get }
     var attackTeams: [AttackTeam] { get }
-    var isLoading: Bool { get }
-    var toastMessage: Binding<ToastMessage?> { get }
+    var errorMessage: String? { get }
 }
 
 @MainActor
@@ -43,7 +39,7 @@ final class AttackTeamListViewModel: AttackTeamListViewModelType {
 
     private var _attackTeams: [AttackTeam] = []
     private var _isLoading = false
-    private var _toastMessage: ToastMessage?
+    private var _errorMessage: String?
 
     var inputs: AttackTeamListViewModelInputs { self }
     var outputs: AttackTeamListViewModelOutputs { self }
@@ -60,6 +56,7 @@ extension AttackTeamListViewModel: AttackTeamListViewModelInputs {
     func fetchAttackTeams() async {
         guard !_isLoading else { return }
         _isLoading = true
+        _errorMessage = nil
         do {
             defer { _isLoading = false }
 
@@ -67,7 +64,7 @@ extension AttackTeamListViewModel: AttackTeamListViewModelInputs {
                 _attackTeams = team.wins
             }
         } catch {
-            _toastMessage = ToastMessage(message: "データの取得に失敗しました", style: .error)
+            _errorMessage = "データの取得に失敗しました"
         }
     }
 
@@ -76,33 +73,33 @@ extension AttackTeamListViewModel: AttackTeamListViewModelInputs {
     }
 
     func deleteAttackTeam(_ attackTeam: AttackTeam) async {
+        _errorMessage = nil
         do {
             try await client.deleteAttackTeam(defenseTeamID: _defenseTeam.id, attackTeam: attackTeam)
+            await refresh()
         } catch {
-            _toastMessage = ToastMessage(message: "削除に失敗しました", style: .error)
+            _errorMessage = "削除に失敗しました"
         }
     }
 
     func likeAttackTeam(_ attackTeam: AttackTeam) async {
+        _errorMessage = nil
         do {
             try await client.likeAttackTeam(defenseTeamID: _defenseTeam.id, attackTeam: attackTeam)
             await refresh()
         } catch {
-            _toastMessage = ToastMessage(message: "評価に失敗しました", style: .error)
+            _errorMessage = "評価に失敗しました"
         }
     }
 
     func dislikeAttackTeam(_ attackTeam: AttackTeam) async {
+        _errorMessage = nil
         do {
             try await client.dislikeAttackTeam(defenseTeamID: _defenseTeam.id, attackTeam: attackTeam)
             await refresh()
         } catch {
-            _toastMessage = ToastMessage(message: "評価に失敗しました", style: .error)
+            _errorMessage = "評価に失敗しました"
         }
-    }
-
-    func showSaveSuccessToast() {
-        _toastMessage = ToastMessage(message: "保存しました", style: .success)
     }
 }
 
@@ -116,14 +113,7 @@ extension AttackTeamListViewModel: AttackTeamListViewModelOutputs {
         _attackTeams
     }
 
-    var isLoading: Bool {
-        _isLoading
-    }
-
-    var toastMessage: Binding<ToastMessage?> {
-        Binding(
-            get: { self._toastMessage },
-            set: { self._toastMessage = $0 }
-        )
+    var errorMessage: String? {
+        _errorMessage
     }
 }

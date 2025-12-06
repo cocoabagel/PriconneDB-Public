@@ -10,18 +10,18 @@ import Foundation
 import SwiftData
 
 @Model
-public final class CachedDefenseTeam {
+final class CachedDefenseTeam {
     @Attribute(.unique)
-    public var id: String
-    public var attackTypeRaw: String
-    public var membersData: Data
-    public var winsData: Data
-    public var memberNames: [String]
-    public var created: Date
-    public var lastUpdated: Date
-    public var cachedAt: Date
+    var id: String
+    var attackTypeRaw: String
+    var membersData: Data
+    var winsData: Data
+    var memberNames: [String]
+    var created: Date
+    var lastUpdated: Date
+    var cachedAt: Date
 
-    public init(
+    init(
         id: String,
         attackTypeRaw: String,
         membersData: Data,
@@ -43,7 +43,7 @@ public final class CachedDefenseTeam {
 }
 
 // MARK: - Conversion
-public extension CachedDefenseTeam {
+extension CachedDefenseTeam {
     convenience init?(from defenseTeam: DefenseTeam) {
         let encoder = JSONEncoder()
         guard

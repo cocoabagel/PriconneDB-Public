@@ -51,7 +51,6 @@ struct SearchViewModelTests {
         // Then
         #expect(mockClient.fetchAllUnitsCallsCount == 1)
         #expect(sut.outputs.filteredUnits.count == 2)
-        #expect(sut.outputs.isLoading == false)
     }
 
     @Test

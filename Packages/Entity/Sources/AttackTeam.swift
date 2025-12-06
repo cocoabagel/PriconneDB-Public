@@ -18,41 +18,6 @@ public struct AttackTeam: Sendable, Identifiable, Codable {
     public var created: Date
     public var lastUpdated: Date
 
-    public var toAnyObject: [String: Any] {
-        [
-            "attackType": attackType.rawValue,
-            "members": members.map(\.toAnyObject),
-            "recommend": recommend,
-            "likeCount": likeCount,
-            "dislikeCount": dislikeCount,
-            "remarks": remarks,
-            "created": Timestamp(date: created),
-            "lastUpdated": Timestamp(date: lastUpdated)
-        ]
-    }
-
-    public init?(document: QueryDocumentSnapshot) {
-        guard
-            let attackTypeString = document.data()["attackType"] as? String,
-            let attackType = AttackType(rawValue: attackTypeString),
-            let members = document.data()["members"] as? [[String: Any]],
-            let recommend = (document.data()["recommend"] ?? false) as? Bool,
-            let likeCount = (document.data()["likeCount"] ?? 0) as? Int,
-            let dislikeCount = (document.data()["dislikeCount"] ?? 0) as? Int,
-            let remarks = (document.data()["remarks"] ?? "") as? String,
-            let created = document.data()["created"] as? Timestamp,
-            let lastUpdated = document.data()["lastUpdated"] as? Timestamp else { return nil }
-
-        self.attackType = attackType
-        self.members = members.compactMap(GameUnit.init(dict:))
-        self.recommend = recommend
-        self.likeCount = likeCount
-        self.dislikeCount = dislikeCount
-        self.remarks = remarks
-        self.created = created.dateValue()
-        self.lastUpdated = lastUpdated.dateValue()
-    }
-
     public init?(dict: [String: Any]) {
         guard
             let attackTypeString = dict["attackType"] as? String,

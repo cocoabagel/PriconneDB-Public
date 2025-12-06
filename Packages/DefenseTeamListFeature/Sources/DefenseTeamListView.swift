@@ -8,7 +8,6 @@
 import AttackTeamListFeature
 import CreateDefenseTeamFeature
 import Entity
-import Resources
 import SharedViews
 import SwiftUI
 

@@ -47,7 +47,6 @@ struct FilterUnitsViewModelTests {
         // Then
         #expect(mockClient.fetchAllUnitsCallsCount == 1)
         #expect(sut.outputs.allUnits.count == 2)
-        #expect(sut.outputs.isLoading == false)
     }
 
     @Test

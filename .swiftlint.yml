@@ -158,6 +158,8 @@ excluded:
   - "**/.build"
   - Packages/Mocks/Sources/Generated # Sourcery生成ファイル
   - bin/UpdateMetadata # メタデータ更新CLIツール
+  - bin/CheckUnusedCode
+
 closure_body_length:
   warning: 50
   error: 100

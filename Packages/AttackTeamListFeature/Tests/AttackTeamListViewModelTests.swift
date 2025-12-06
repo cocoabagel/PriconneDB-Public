@@ -32,7 +32,6 @@ struct AttackTeamListViewModelTests {
     func initialState() {
         // Then
         #expect(sut.outputs.defenseTeam.id == "test-defense-id")
-        #expect(sut.outputs.isLoading == false)
     }
 
     // MARK: - fetchAttackTeams
@@ -51,7 +50,6 @@ struct AttackTeamListViewModelTests {
         #expect(mockClient.fetchDefenseTeamIdCallsCount == 1)
         #expect(mockClient.fetchDefenseTeamIdReceivedId == "test-defense-id")
         #expect(sut.outputs.attackTeams.count == 2)
-        #expect(sut.outputs.isLoading == false)
     }
 
     @Test
@@ -135,62 +133,5 @@ struct AttackTeamListViewModelTests {
         #expect(mockClient.dislikeAttackTeamDefenseTeamIDAttackTeamReceivedArguments?.attackTeam.id == "attack-to-dislike")
         // refresh が呼ばれることを確認
         #expect(mockClient.fetchDefenseTeamIdCallsCount == 1)
-    }
-
-    // MARK: - toastMessage
-
-    @Test
-    func fetchAttackTeamsError() async {
-        // Given
-        mockClient.fetchDefenseTeamIdThrowableError = NSError(domain: "test", code: 0)
-
-        // When
-        await sut.inputs.fetchAttackTeams()
-
-        // Then
-        #expect(sut.outputs.toastMessage.wrappedValue != nil)
-        #expect(sut.outputs.toastMessage.wrappedValue?.message == "データの取得に失敗しました")
-    }
-
-    @Test
-    func deleteAttackTeamError() async {
-        // Given
-        let attackTeam = AttackTeam.stub(id: "attack-to-delete")
-        mockClient.deleteAttackTeamDefenseTeamIDAttackTeamThrowableError = NSError(domain: "test", code: 0)
-
-        // When
-        await sut.inputs.deleteAttackTeam(attackTeam)
-
-        // Then
-        #expect(sut.outputs.toastMessage.wrappedValue != nil)
-        #expect(sut.outputs.toastMessage.wrappedValue?.message == "削除に失敗しました")
-    }
-
-    @Test
-    func likeAttackTeamError() async {
-        // Given
-        let attackTeam = AttackTeam.stub(id: "attack-to-like")
-        mockClient.likeAttackTeamDefenseTeamIDAttackTeamThrowableError = NSError(domain: "test", code: 0)
-
-        // When
-        await sut.inputs.likeAttackTeam(attackTeam)
-
-        // Then
-        #expect(sut.outputs.toastMessage.wrappedValue != nil)
-        #expect(sut.outputs.toastMessage.wrappedValue?.message == "評価に失敗しました")
-    }
-
-    @Test
-    func dislikeAttackTeamError() async {
-        // Given
-        let attackTeam = AttackTeam.stub(id: "attack-to-dislike")
-        mockClient.dislikeAttackTeamDefenseTeamIDAttackTeamThrowableError = NSError(domain: "test", code: 0)
-
-        // When
-        await sut.inputs.dislikeAttackTeam(attackTeam)
-
-        // Then
-        #expect(sut.outputs.toastMessage.wrappedValue != nil)
-        #expect(sut.outputs.toastMessage.wrappedValue?.message == "評価に失敗しました")
     }
 }

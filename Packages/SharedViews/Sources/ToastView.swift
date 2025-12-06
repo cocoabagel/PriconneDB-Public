@@ -67,19 +67,19 @@ public struct ToastMessage: Equatable, Identifiable {
 
 // MARK: - ToastView
 
-public struct ToastView: View {
+struct ToastView: View {
     let message: ToastMessage
     let onDismiss: () -> Void
 
     @State private var offset: CGFloat = -100.0
     @State private var opacity: Double = 0.0
 
-    public init(message: ToastMessage, onDismiss: @escaping () -> Void) {
+    init(message: ToastMessage, onDismiss: @escaping () -> Void) {
         self.message = message
         self.onDismiss = onDismiss
     }
 
-    public var body: some View {
+    var body: some View {
         HStack(spacing: 12.0) {
             Image(systemName: message.style.iconName)
                 .font(.title3)
@@ -141,34 +141,12 @@ public struct ToastView: View {
     }
 }
 
-// MARK: - ToastOverlay
-
-public struct ToastOverlay: View {
-    @Binding var toast: ToastMessage?
-
-    public init(toast: Binding<ToastMessage?>) {
-        _toast = toast
-    }
-
-    public var body: some View {
-        if let toastMessage = toast {
-            VStack {
-                ToastView(message: toastMessage) {
-                    toast = nil
-                }
-                Spacer()
-            }
-            .transition(.move(edge: .top).combined(with: .opacity))
-        }
-    }
-}
-
 // MARK: - ToastModifier
 
-public struct ToastModifier: ViewModifier {
+struct ToastModifier: ViewModifier {
     @Binding var toast: ToastMessage?
 
-    public func body(content: Content) -> some View {
+    func body(content: Content) -> some View {
         content
             .overlay(alignment: .top) {
                 if let toast {

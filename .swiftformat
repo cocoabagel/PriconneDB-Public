@@ -4,6 +4,7 @@
 # 除外パス
 --exclude Packages/Mocks/Sources/Generated
 --exclude bin/UpdateMetadata
+--exclude bin/CheckUnusedCode
 
 # インデント (indentation_width対応)
 --indent 4

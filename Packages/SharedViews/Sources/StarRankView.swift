@@ -8,16 +8,16 @@
 import Resources
 import SwiftUI
 
-public struct StarRankView: View {
+struct StarRankView: View {
     private let starRank: Int
     private let hasUniqueEquipment: Bool
 
-    public init(starRank: Int, hasUniqueEquipment: Bool) {
+    init(starRank: Int, hasUniqueEquipment: Bool) {
         self.starRank = starRank
         self.hasUniqueEquipment = hasUniqueEquipment
     }
 
-    public var body: some View {
+    var body: some View {
         HStack(spacing: 0.0) {
             ForEach(0 ..< min(starRank, 6), id: \.self) { index in
                 starImage(for: index)

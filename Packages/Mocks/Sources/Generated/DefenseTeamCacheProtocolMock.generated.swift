@@ -59,16 +59,4 @@ public final class DefenseTeamCacheProtocolMock: DefenseTeamCacheProtocol, @unch
         deleteIdCallsCount += 1
         deleteIdReceivedId = id
     }
-
-    // MARK: - clear
-
-    public var clearThrowableError: Error?
-    public var clearCallsCount = 0
-
-    public func clear() async throws {
-        if let error = clearThrowableError {
-            throw error
-        }
-        clearCallsCount += 1
-    }
 }

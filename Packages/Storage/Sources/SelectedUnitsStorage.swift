@@ -13,7 +13,6 @@ public protocol SelectedUnitsStorageProtocol: AutoMockable {
     func save(units: [SelectedUnit])
     func loadSortedNames() -> [String]
     func load() -> [SelectedUnit]
-    func clear()
 }
 
 public struct SelectedUnitsStorage: SelectedUnitsStorageProtocol, Sendable {
@@ -42,16 +41,11 @@ public struct SelectedUnitsStorage: SelectedUnitsStorageProtocol, Sendable {
         }
         return units
     }
-
-    public func clear() {
-        UserDefaults.standard.removeObject(forKey: key)
-    }
 }
 
 public protocol FilteredUnitsStorageProtocol: AutoMockable {
     func save(names: [String])
     func load() -> [String]
-    func clear()
 }
 
 public struct FilteredUnitsStorage: FilteredUnitsStorageProtocol, Sendable {
@@ -65,9 +59,5 @@ public struct FilteredUnitsStorage: FilteredUnitsStorageProtocol, Sendable {
 
     public func load() -> [String] {
         UserDefaults.standard.stringArray(forKey: key) ?? []
-    }
-
-    public func clear() {
-        UserDefaults.standard.removeObject(forKey: key)
     }
 }

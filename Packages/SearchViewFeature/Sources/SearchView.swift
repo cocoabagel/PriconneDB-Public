@@ -5,7 +5,6 @@
 //  Created by Kazutoshi Baba on 2025/11/27.
 //
 
-import Entity
 import FilterUnitsFeature
 import SharedViews
 import SwiftUI

@@ -65,13 +65,11 @@ public actor FireStoreClient: FireStoreClientProtocol {
 
     public func createDefenseTeam(members: [GameUnit]) async throws {
         let sortedMembers = members.sorted { $0.position > $1.position }
-        let memberNamesKey = sortedMembers.map(\.name).joined(separator: ",")
         let now = Date()
 
         let data: [String: Any] = [
             "attackType": AttackType.defend.rawValue,
             "members": sortedMembers.map(\.toAnyObject),
-            "memberNamesKey": memberNamesKey,
             "wins": [],
             "created": Timestamp(date: now),
             "lastUpdated": Timestamp(date: now)

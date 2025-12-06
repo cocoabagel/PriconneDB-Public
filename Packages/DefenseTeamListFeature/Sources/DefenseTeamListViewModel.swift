@@ -108,7 +108,7 @@ extension DefenseTeamListViewModel: DefenseTeamListViewModelInputs {
     }
 
     func fetchMore() async {
-        guard !isLoading, hasMorePages else { return }
+        guard !isLoading, _hasMorePages else { return }
         _isLoading = true
         do {
             defer { _isLoading = false }

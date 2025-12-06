@@ -24,7 +24,6 @@ protocol FilterUnitsViewModelInputs {
 protocol FilterUnitsViewModelOutputs {
     var allUnits: [GameUnit] { get }
     var selectedUnitNames: Set<String> { get }
-    var isLoading: Bool { get }
     var toastMessage: Binding<ToastMessage?> { get }
 }
 
@@ -102,10 +101,6 @@ extension FilterUnitsViewModel: FilterUnitsViewModelOutputs {
 
     var selectedUnitNames: Set<String> {
         _selectedUnitNames
-    }
-
-    var isLoading: Bool {
-        _isLoading
     }
 
     var toastMessage: Binding<ToastMessage?> {

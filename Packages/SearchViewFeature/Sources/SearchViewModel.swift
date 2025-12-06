@@ -23,7 +23,6 @@ protocol SearchViewModelInputs {
 protocol SearchViewModelOutputs {
     var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
-    var isLoading: Bool { get }
     var hasFilter: Bool { get }
     var toastMessage: Binding<ToastMessage?> { get }
 }
@@ -122,10 +121,6 @@ extension SearchViewModel: SearchViewModelOutputs {
 
     var selectedUnits: [GameUnit] {
         _selectedUnits
-    }
-
-    var isLoading: Bool {
-        _isLoading
     }
 
     var hasFilter: Bool {

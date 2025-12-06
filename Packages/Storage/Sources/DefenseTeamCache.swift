@@ -15,7 +15,6 @@ public protocol DefenseTeamCacheProtocol: AutoMockableSendable {
     func fetchAll() async -> [DefenseTeam]
     func search(memberNames: [String]) async -> [DefenseTeam]
     func delete(id: String) async throws
-    func clear() async throws
 }
 
 @ModelActor
@@ -88,11 +87,6 @@ public actor DefenseTeamCache: DefenseTeamCacheProtocol {
             try modelContext.save()
         }
     }
-
-    public func clear() throws {
-        try modelContext.delete(model: CachedDefenseTeam.self)
-        try modelContext.save()
-    }
 }
 
 // MARK: - ModelContainer Factory
@@ -119,5 +113,4 @@ public actor NoOpDefenseTeamCache: DefenseTeamCacheProtocol {
     public func fetchAll() -> [DefenseTeam] { [] }
     public func search(memberNames _: [String]) -> [DefenseTeam] { [] }
     public func delete(id _: String) throws {}
-    public func clear() throws {}
 }

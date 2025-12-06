@@ -38,12 +38,4 @@ public final class SelectedUnitsStorageProtocolMock: SelectedUnitsStorageProtoco
         loadCallsCount += 1
         return loadReturnValue
     }
-
-    // MARK: - clear
-
-    public var clearCallsCount = 0
-
-    public func clear() {
-        clearCallsCount += 1
-    }
 }

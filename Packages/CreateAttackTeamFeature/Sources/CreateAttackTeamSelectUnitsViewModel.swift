@@ -27,7 +27,6 @@ protocol CreateAttackTeamSelectUnitsViewModelOutputs {
     var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
     var remarks: String { get }
-    var isLoading: Bool { get }
     var isSaving: Bool { get }
     var canProceed: Bool { get }
     var hasFilter: Bool { get }
@@ -142,10 +141,6 @@ extension CreateAttackTeamSelectUnitsViewModel: CreateAttackTeamSelectUnitsViewM
 
     var remarks: String {
         _remarks
-    }
-
-    var isLoading: Bool {
-        _isLoading
     }
 
     var isSaving: Bool {

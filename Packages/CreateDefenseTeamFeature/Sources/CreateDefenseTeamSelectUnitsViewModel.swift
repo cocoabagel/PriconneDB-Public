@@ -25,7 +25,6 @@ protocol CreateDefenseTeamSelectUnitsViewModelInputs {
 protocol CreateDefenseTeamSelectUnitsViewModelOutputs {
     var filteredUnits: [GameUnit] { get }
     var selectedUnits: [GameUnit] { get }
-    var isLoading: Bool { get }
     var isSaving: Bool { get }
     var canProceed: Bool { get }
     var hasFilter: Bool { get }
@@ -124,10 +123,6 @@ extension CreateDefenseTeamSelectUnitsViewModel {
 
     var selectedUnits: [GameUnit] {
         _selectedUnits
-    }
-
-    var isLoading: Bool {
-        _isLoading
     }
 
     var isSaving: Bool {

@@ -31,16 +31,6 @@ public struct DefenseTeam: Sendable {
         self.lastUpdated = lastUpdated
     }
 
-    public var toAnyObject: [String: Any] {
-        [
-            "attackType": attackType.rawValue,
-            "members": members.map(\.toAnyObject),
-            "wins": wins.map(\.toAnyObject),
-            "created": Timestamp(date: created),
-            "lastUpdated": Timestamp(date: lastUpdated)
-        ]
-    }
-
     public init?(document: QueryDocumentSnapshot) {
         guard
             let attackTypeString = document.data()["attackType"] as? String,
