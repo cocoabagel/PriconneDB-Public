@@ -28,7 +28,7 @@ protocol SearchViewModelOutputs {
 }
 
 @MainActor
-protocol SearchViewModelType: SearchViewModelInputs, SearchViewModelOutputs {
+protocol SearchViewModelType {
     var inputs: SearchViewModelInputs { get }
     var outputs: SearchViewModelOutputs { get }
 }

@@ -26,7 +26,7 @@ protocol AttackTeamListViewModelOutputs {
 }
 
 @MainActor
-protocol AttackTeamListViewModelType: AttackTeamListViewModelInputs, AttackTeamListViewModelOutputs {
+protocol AttackTeamListViewModelType {
     var inputs: AttackTeamListViewModelInputs { get }
     var outputs: AttackTeamListViewModelOutputs { get }
 }

@@ -32,8 +32,7 @@ protocol CreateDefenseTeamSelectUnitsViewModelOutputs {
 }
 
 @MainActor
-protocol CreateDefenseTeamSelectUnitsViewModelType: CreateDefenseTeamSelectUnitsViewModelInputs,
-    CreateDefenseTeamSelectUnitsViewModelOutputs {
+protocol CreateDefenseTeamSelectUnitsViewModelType {
     var inputs: CreateDefenseTeamSelectUnitsViewModelInputs { get }
     var outputs: CreateDefenseTeamSelectUnitsViewModelOutputs { get }
 }
@@ -65,7 +64,7 @@ final class CreateDefenseTeamSelectUnitsViewModel: CreateDefenseTeamSelectUnitsV
 }
 
 // MARK: - CreateDefenseTeamSelectUnitsViewModelInputs
-extension CreateDefenseTeamSelectUnitsViewModel {
+extension CreateDefenseTeamSelectUnitsViewModel: CreateDefenseTeamSelectUnitsViewModelInputs {
     func fetchUnits() async {
         guard !_isLoading else { return }
 
@@ -116,7 +115,7 @@ extension CreateDefenseTeamSelectUnitsViewModel {
 }
 
 // MARK: - CreateDefenseTeamSelectUnitsViewModelOutputs
-extension CreateDefenseTeamSelectUnitsViewModel {
+extension CreateDefenseTeamSelectUnitsViewModel: CreateDefenseTeamSelectUnitsViewModelOutputs {
     var filteredUnits: [GameUnit] {
         _filteredUnits
     }

@@ -34,7 +34,7 @@ protocol CreateAttackTeamSelectUnitsViewModelOutputs {
 }
 
 @MainActor
-protocol CreateAttackTeamSelectUnitsViewModelType: CreateAttackTeamSelectUnitsViewModelInputs, CreateAttackTeamSelectUnitsViewModelOutputs {
+protocol CreateAttackTeamSelectUnitsViewModelType {
     var inputs: CreateAttackTeamSelectUnitsViewModelInputs { get }
     var outputs: CreateAttackTeamSelectUnitsViewModelOutputs { get }
 }

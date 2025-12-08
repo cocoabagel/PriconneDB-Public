@@ -28,7 +28,7 @@ protocol FilterUnitsViewModelOutputs {
 }
 
 @MainActor
-protocol FilterUnitsViewModelType: FilterUnitsViewModelInputs, FilterUnitsViewModelOutputs {
+protocol FilterUnitsViewModelType {
     var inputs: FilterUnitsViewModelInputs { get }
     var outputs: FilterUnitsViewModelOutputs { get }
 }

@@ -31,7 +31,7 @@ protocol DefenseTeamListViewModelOutputs {
 }
 
 @MainActor
-protocol DefenseTeamListViewModelType: DefenseTeamListViewModelInputs, DefenseTeamListViewModelOutputs {
+protocol DefenseTeamListViewModelType {
     var inputs: DefenseTeamListViewModelInputs { get }
     var outputs: DefenseTeamListViewModelOutputs { get }
 }
