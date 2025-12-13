@@ -5,8 +5,8 @@
 //  Created by Kazutoshi Baba on 2025/11/28.
 //
 
-import CreateAttackTeamFeature
 import Entity
+import Environment
 import SharedViews
 import SwiftUI
 
@@ -55,14 +55,12 @@ public struct AttackTeamListView: View {
             }
         }
         .sheet(isPresented: $showCreateAttackTeam) {
-            NavigationStack {
-                CreateAttackTeamSelectUnitsView(defenseTeamId: viewModel.outputs.defenseTeam.id) {
-                    if let onShowToast {
-                        onShowToast(ToastMessage(message: "保存しました", style: .success))
-                    }
-                    Task {
-                        await viewModel.inputs.refresh()
-                    }
+            CreateAttackTeamBuilderView(defenseTeamId: viewModel.outputs.defenseTeam.id) {
+                if let onShowToast {
+                    onShowToast(ToastMessage(message: "保存しました", style: .success))
+                }
+                Task {
+                    await viewModel.inputs.refresh()
                 }
             }
         }

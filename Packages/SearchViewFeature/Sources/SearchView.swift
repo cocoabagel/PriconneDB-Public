@@ -5,7 +5,7 @@
 //  Created by Kazutoshi Baba on 2025/11/27.
 //
 
-import FilterUnitsFeature
+import Environment
 import SharedViews
 import SwiftUI
 
@@ -43,9 +43,7 @@ public struct SearchView: View {
             .sheet(isPresented: $showFilterView) {
                 viewModel.inputs.applyFilter()
             } content: {
-                NavigationStack {
-                    FilterUnitsView()
-                }
+                FilterUnitsBuilderView()
             }
             .task {
                 await viewModel.inputs.fetchUnits()

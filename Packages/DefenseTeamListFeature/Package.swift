@@ -14,9 +14,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "../AttackTeamListFeature"),
-        .package(path: "../CreateDefenseTeamFeature"),
         .package(path: "../Entity"),
+        .package(path: "../Environment"),
         .package(path: "../Mocks"),
         .package(path: "../Networking"),
         .package(path: "../Resources"),
@@ -27,9 +26,8 @@ let package = Package(
         .target(
             name: "DefenseTeamListFeature",
             dependencies: [
-                "AttackTeamListFeature",
-                "CreateDefenseTeamFeature",
                 "Entity",
+                "Environment",
                 "Networking",
                 "Resources",
                 "SharedViews",

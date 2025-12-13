@@ -5,7 +5,7 @@
 //  Created by Kazutoshi Baba on 2025/11/28.
 //
 
-import FilterUnitsFeature
+import Environment
 import Resources
 import SharedViews
 import SwiftUI
@@ -72,9 +72,7 @@ public struct CreateAttackTeamSelectUnitsView: View {
         .sheet(isPresented: $showFilterView) {
             viewModel.inputs.applyFilter()
         } content: {
-            NavigationStack {
-                FilterUnitsView()
-            }
+            FilterUnitsBuilderView()
         }
         .task {
             await viewModel.inputs.fetchUnits()

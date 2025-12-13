@@ -6,6 +6,7 @@
 //
 
 import DefenseTeamListFeature
+import Environment
 import SearchViewFeature
 import SwiftUI
 
@@ -16,6 +17,8 @@ public struct MainTabView: View {
     @State private var showLaunchSplash = true
     @State private var splashIcon: String = "shield.fill"
     @State private var splashColor: Color = .blue
+
+    private let viewBuilder = AppViewBuilder()
 
     public init() {}
 
@@ -30,6 +33,7 @@ public struct MainTabView: View {
                     SearchView()
                 }
             }
+            .environment(\.viewBuilder, viewBuilder)
             .onChange(of: selectedTab) { _, newValue in
                 triggerSplash(for: newValue)
             }
@@ -306,4 +310,5 @@ private struct LaunchSplashView: View {
 
 #Preview {
     MainTabView()
+        .environment(\.viewBuilder, AppViewBuilder())
 }

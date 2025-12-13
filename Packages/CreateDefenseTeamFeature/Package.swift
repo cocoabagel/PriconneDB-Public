@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Entity"),
-        .package(path: "../FilterUnitsFeature"),
+        .package(path: "../Environment"),
         .package(path: "../Mocks"),
         .package(path: "../Networking"),
         .package(path: "../Resources"),
@@ -29,7 +29,7 @@ let package = Package(
             name: "CreateDefenseTeamFeature",
             dependencies: [
                 "Entity",
-                "FilterUnitsFeature",
+                "Environment",
                 "Networking",
                 "Resources",
                 "SharedViews",

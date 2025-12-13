@@ -14,14 +14,24 @@ let package = Package(
         )
     ],
     dependencies: [
+        .package(path: "../AttackTeamListFeature"),
+        .package(path: "../CreateAttackTeamFeature"),
+        .package(path: "../CreateDefenseTeamFeature"),
         .package(path: "../DefenseTeamListFeature"),
+        .package(path: "../Environment"),
+        .package(path: "../FilterUnitsFeature"),
         .package(path: "../SearchViewFeature")
     ],
     targets: [
         .target(
             name: "AppFeature",
             dependencies: [
+                "AttackTeamListFeature",
+                "CreateAttackTeamFeature",
+                "CreateDefenseTeamFeature",
                 "DefenseTeamListFeature",
+                "Environment",
+                "FilterUnitsFeature",
                 "SearchViewFeature"
             ],
             path: "Sources"

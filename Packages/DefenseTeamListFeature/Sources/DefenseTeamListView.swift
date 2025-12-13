@@ -5,9 +5,8 @@
 //  Created by Kazutoshi Baba on 2025/11/26.
 //
 
-import AttackTeamListFeature
-import CreateDefenseTeamFeature
 import Entity
+import Environment
 import SharedViews
 import SwiftUI
 
@@ -30,7 +29,7 @@ public struct DefenseTeamListView: View {
             }
             .navigationTitle("防衛")
             .navigationDestination(for: DefenseTeam.self) { team in
-                AttackTeamListView(defenseTeam: team) { toast in
+                AttackTeamListBuilderView(defenseTeam: team) { toast in
                     viewModel.inputs.showToast(toast)
                 }
             }
@@ -48,7 +47,7 @@ public struct DefenseTeamListView: View {
                 }
             }
             .sheet(isPresented: $showCreateTeam) {
-                CreateDefenseTeamView {
+                CreateDefenseTeamBuilderView {
                     viewModel.inputs.showSaveSuccessToast()
                 }
             }
