@@ -80,13 +80,14 @@ swiftlint lint Packages/
 
 ```
 Packages/
-├── AppFeature/              # メインTabView、アプリのエントリーポイント
+├── AppFeature/              # メインTabView、アプリのエントリーポイント、DIコンテナ
 ├── AttackTeamListFeature/   # 攻撃チーム一覧機能
 ├── CreateAttackTeamFeature/ # 攻撃チーム作成機能
 ├── CreateDefenseTeamFeature/# 防衛チーム作成機能
 ├── DefenseTeamListFeature/  # 防衛チーム一覧機能
 ├── FilterUnitsFeature/      # ユニットフィルター機能
 ├── SearchViewFeature/       # ユニット検索機能
+├── Environment/             # Feature間依存解消用DI基盤（ViewBuildable等）
 ├── Entity/                  # データモデル (GameUnit, DefenseTeam等)
 ├── Mocks/                   # テスト用モック（Sourcery生成）
 ├── MockSupport/             # モックサポートユーティリティ
@@ -98,20 +99,25 @@ Packages/
 
 ### 依存関係
 
+Feature間は直接依存せず、Environmentモジュールを介してDIします。
+
 ```
-AppFeature
+AppFeature (DIコンテナ)
+├── Environment
 ├── DefenseTeamListFeature
-│   ├── Entity
-│   ├── Networking
-│   ├── Resources
-│   ├── SharedViews
-│   └── Storage
+├── AttackTeamListFeature
+├── CreateDefenseTeamFeature
+├── CreateAttackTeamFeature
+├── FilterUnitsFeature
 └── SearchViewFeature
-    ├── Entity
-    ├── Networking
-    ├── Resources
-    ├── SharedViews
-    └── Storage
+
+各Featureモジュール
+├── Environment          # ViewBuildable経由で他のFeatureを参照
+├── Entity
+├── Networking
+├── Resources
+├── SharedViews
+└── Storage
 ```
 
 ### MVVMパターン (SwiftUI)
@@ -437,10 +443,74 @@ KFImage(URL(string: unit.iconURL))
 
 ### 新規Featureモジュール追加
 
-1. `Packages/` に新規ディレクトリ作成
-2. `Package.swift` 作成（iOS .v26, swift-tools-version: 6.2）
-3. View, ViewModel作成
-4. AppFeatureの依存関係に追加
+Sourceryテンプレートを使用してView/ViewModelの雛形を生成できます。
+
+```bash
+# 使用方法
+./bin/generate-feature.sh <FeatureName>
+
+# 例: UserProfileFeatureを作成
+./bin/generate-feature.sh UserProfile
+```
+
+テンプレートファイル:
+```
+Templates/
+├── View.stencil        # SwiftUI View テンプレート
+└── ViewModel.stencil   # ViewModel テンプレート（Inputs/Outputsパターン）
+```
+
+生成されるファイル:
+- `Packages/<FeatureName>Feature/Sources/<FeatureName>View.swift`
+- `Packages/<FeatureName>Feature/Sources/<FeatureName>ViewModel.swift`
+
+手動で追加が必要な作業:
+1. `Package.swift` の作成
+2. AppFeatureの依存関係に追加
+3. 他のFeatureから参照する場合はEnvironmentモジュールの更新
+
+### Environmentモジュールの更新
+
+新しいFeatureを他のFeatureから参照する場合は、Environmentモジュールを更新します。
+
+1. `ViewBuildable.swift` にビルドメソッドを追加:
+
+```swift
+func buildNewFeatureView(param: String) -> AnyView
+```
+
+2. `NewFeatureBuilderView.swift` を作成:
+
+```swift
+public struct NewFeatureBuilderView: View {
+    @Environment(\.viewBuilder)
+    private var viewBuilder
+
+    private let param: String
+
+    public init(param: String) {
+        self.param = param
+    }
+
+    public var body: some View {
+        if let viewBuilder {
+            viewBuilder.buildNewFeatureView(param: param)
+        } else {
+            EmptyView()
+        }
+    }
+}
+```
+
+3. `PreviewBuilder.swift` にダミー実装を追加
+
+4. `AppViewBuilder.swift` に本番実装を追加:
+
+```swift
+public func buildNewFeatureView(param: String) -> AnyView {
+    AnyView(NewFeatureView(param: param))
+}
+```
 
 ### Firestoreマイグレーション
 

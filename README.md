@@ -75,6 +75,7 @@ Packages/
 ├── DefenseTeamListFeature/  # 防衛チーム一覧機能
 ├── FilterUnitsFeature/      # ユニットフィルター機能
 ├── SearchViewFeature/       # ユニット検索機能
+├── Environment/             # Feature間依存解消用DI基盤
 ├── Entity/                  # データモデル
 ├── Networking/              # Firestore クライアント
 ├── Storage/                 # UserDefaults永続化
@@ -108,6 +109,18 @@ final class ViewModel: ViewModelType {
     var outputs: ViewModelOutputs { self }
 }
 ```
+
+### Feature間依存の解消
+
+Feature同士が直接依存しないよう、Environmentモジュールを介した依存性注入パターンを採用しています。
+
+```
+AppFeature (DIコンテナ)
+├── Environment（ViewBuildableプロトコル）
+└── 各Featureモジュール → Environment のみに依存
+```
+
+これにより、FeatureモジュールのビルドがO(Feature数)ではなくO(1)になり、ビルド時間が短縮されます。
 
 ### 並行処理
 
