@@ -53,6 +53,41 @@ mcp__XcodeBuildMCP__xcodebuild: プロジェクトをビルド
    bundle exec fastlane unit_tests
    ```
 
+5. **CodeRabbitレビュー**: AIコードレビューを実行し、指摘がなくなるまで修正
+
+   ```bash
+   coderabbit review --plain
+   ```
+
+   レビュー対応フロー:
+   1. `coderabbit review --plain` でレビューを実行
+   2. 指摘事項を確認し、コードを修正
+   3. 修正後、再度 `coderabbit review --plain` を実行
+   4. 指摘がなくなるまで 2-3 を繰り返す
+   5. 全ての指摘に対応したら完了
+
+   オプション:
+   - `--type uncommitted`: 未コミットの変更のみレビュー
+   - `--type committed`: コミット済みの変更のみレビュー
+   - `--base <branch>`: 比較対象ブランチを指定
+   - `--plain`: 人間向けの詳細なフィードバックをプレーンテキストで表示（推奨）
+   - `--prompt-only`: Claude Code等のAIエージェント向けに最適化されたプロンプト出力
+
+   ### docs/ディレクトリの除外
+
+   `docs/`ディレクトリ（DocC生成物）は大量のJSONファイル（数千ファイル）を含むため、
+   git diffのパフォーマンス低下やCI/CDの転送時間増加を引き起こします。
+
+   `.coderabbit.yaml`で除外設定済み:
+
+   ```yaml
+   reviews:
+     path_filters:
+       - "!docs/**"
+   ```
+
+   大量ファイル変更時は`--type uncommitted`でソースコードのみレビューすることを推奨
+
 ## プロジェクト概要
 
 PriconneDBは、プリンセスコネクト Re:Dive プレイヤー向けのiOSアプリです。バトルアリーナのチーム編成を共有・管理できます。Swift + Firebase で構築されています。

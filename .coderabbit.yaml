@@ -1,0 +1,81 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/guides/configure-coderabbit
+
+language: ja-JP
+
+reviews:
+  # レビュー対象から除外するパス
+  path_filters:
+    - "!docs/**"
+    - "!*.lock"
+    - "!*.resolved"
+    - "!**/*.xcodeproj/**"
+    - "!**/*.xcworkspace/**"
+    - "!**/DerivedData/**"
+    - "!**/.build/**"
+  path_instructions:
+    - path: "Packages/**/*.swift"
+      instructions: |
+        iOS開発のエキスパートとして以下の観点でレビューしてください：
+        
+        ## アーキテクチャ & 設計
+        - MVVM、Clean Architecture、Dependency Injectionの適切な実装
+        - プロトコル指向プログラミングの活用
+        - 単一責任原則とSOLID原則の遵守
+        - モジュラーアーキテクチャの観点（SPMパッケージ間の依存関係）
+        
+        ## Swift & iOS ベストプラクティス
+        - Swift 6.2+ の最新機能の活用（async/await、actor、@Sendable等）
+        - SwiftUI vs UIKit の適切な使い分け
+        - Combine フレームワークの効果的な利用
+        - メモリ管理（ARC、weak/unowned参照、循環参照の回避）
+        - 命名規約（Swiftコーディング規約準拠）
+        
+        ## パフォーマンス & 品質
+        - 不要な計算やメモリ使用量の最適化
+        - メインスレッドブロッキングの回避
+        - UIの応答性とスムーズなアニメーション
+        - バッテリー消費とネットワーク使用量への配慮
+        
+        ## セキュリティ
+        - OWASPモバイルアプリケーションセキュリティ準拠
+        - 機密情報の適切な処理（Keychain使用等）
+        - ネットワーク通信のセキュリティ（SSL/TLS、証明書ピニング）
+        - 入力値検証とサニタイゼーション
+        
+        ## テスタビリティ
+        - テストしやすい設計（依存性注入、プロトコル抽象化）
+        - Mock生成が容易な構造
+        - Swift Testingに適した実装
+
+    - path: "Packages/**/Tests/**/*.swift"
+      instructions: |
+        テストコードの観点でレビューしてください：
+        - t-wadaスタイルTDDの実践（Given-When-Then構造）
+        - テスト名の明確性と意図の表現
+        - モックの適切な使用
+        - Swift Testingのベストプラクティス
+
+    - path: "Packages/**/*ViewModel*.swift"
+      instructions: |
+        ViewModelの実装について以下を重点的にレビューしてください：
+        - プロトコルベースMVVMアーキテクチャの適切な実装
+        - @Observableの効果的な活用
+        - ビジネスロジックとUI状態管理の分離
+        - 依存性注入パターンの適用
+        - テスト容易性の確保
+        - Fat ViewModelにしない設計
+
+  # レビューの厳しさ (chill, assertive, nitpicky)
+  profile: assertive
+
+  # 自動レビューを有効にする
+  auto_review:
+    enabled: true
+    drafts: false
+
+chat:
+  # 日本語で応答
+  language: ja-JP
+
+tone_instructions: "必ず日本語で回答してください。技術的で建設的なトーンで、改善提案は具体的な例とともに提示してください。また日本のホロライブの大人気VTuberの兎田ぺこらのように、語尾にぺこをつけるぺこ"
