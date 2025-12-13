@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriconneDB Documentation</title>
+    <style>
+        :root {
+            --background: #1c1c1e;
+            --surface: #2c2c2e;
+            --text-primary: #ffffff;
+            --text-secondary: #8e8e93;
+            --accent: #0a84ff;
+            --border: #38383a;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background: #f2f2f7;
+                --surface: #ffffff;
+                --text-primary: #000000;
+                --text-secondary: #6c6c70;
+                --accent: #007aff;
+                --border: #c6c6c8;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .module-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .module-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .module-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PriconneDB</h1>
+        <p class="subtitle">Swift Documentation</p>
+
+        <div class="section">
+            <h2 class="section-title">Feature Modules</h2>
+            <div class="module-grid">
+                <a href="AppFeature/documentation/appfeature/" class="module-card">
+                    <div class="module-name">AppFeature</div>
+                    <div class="module-description">Main TabView, app entry point, DI container</div>
+                </a>
+                <a href="DefenseTeamListFeature/documentation/defenseteamlistfeature/" class="module-card">
+                    <div class="module-name">DefenseTeamListFeature</div>
+                    <div class="module-description">Defense team list functionality</div>
+                </a>
+                <a href="AttackTeamListFeature/documentation/attackteamlistfeature/" class="module-card">
+                    <div class="module-name">AttackTeamListFeature</div>
+                    <div class="module-description">Attack team list functionality</div>
+                </a>
+                <a href="CreateDefenseTeamFeature/documentation/createdefenseteamfeature/" class="module-card">
+                    <div class="module-name">CreateDefenseTeamFeature</div>
+                    <div class="module-description">Create defense team functionality</div>
+                </a>
+                <a href="CreateAttackTeamFeature/documentation/createattackteamfeature/" class="module-card">
+                    <div class="module-name">CreateAttackTeamFeature</div>
+                    <div class="module-description">Create attack team functionality</div>
+                </a>
+                <a href="FilterUnitsFeature/documentation/filterunitsfeature/" class="module-card">
+                    <div class="module-name">FilterUnitsFeature</div>
+                    <div class="module-description">Unit filter functionality</div>
+                </a>
+                <a href="SearchViewFeature/documentation/searchviewfeature/" class="module-card">
+                    <div class="module-name">SearchViewFeature</div>
+                    <div class="module-description">Unit search functionality</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Core Modules</h2>
+            <div class="module-grid">
+                <a href="Environment/documentation/environment/" class="module-card">
+                    <div class="module-name">Environment</div>
+                    <div class="module-description">DI infrastructure for Feature decoupling</div>
+                </a>
+                <a href="Entity/documentation/entity/" class="module-card">
+                    <div class="module-name">Entity</div>
+                    <div class="module-description">Data models (GameUnit, DefenseTeam, etc.)</div>
+                </a>
+                <a href="Networking/documentation/networking/" class="module-card">
+                    <div class="module-name">Networking</div>
+                    <div class="module-description">Firestore client</div>
+                </a>
+                <a href="Storage/documentation/storage/" class="module-card">
+                    <div class="module-name">Storage</div>
+                    <div class="module-description">UserDefaults persistence, SwiftData cache</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">UI Modules</h2>
+            <div class="module-grid">
+                <a href="SharedViews/documentation/sharedviews/" class="module-card">
+                    <div class="module-name">SharedViews</div>
+                    <div class="module-description">Common UI components (ToastView, etc.)</div>
+                </a>
+                <a href="Resources/documentation/resources/" class="module-card">
+                    <div class="module-name">Resources</div>
+                    <div class="module-description">Image assets</div>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated with DocC</p>
+        </footer>
+    </div>
+</body>
+</html>

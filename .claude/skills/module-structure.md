@@ -24,6 +24,7 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Entity"),
+        .package(path: "../Environment"),
         .package(path: "../Networking"),
         .package(path: "../Resources"),
         .package(path: "../SharedViews"),
@@ -34,6 +35,7 @@ let package = Package(
             name: "FeatureModule",
             dependencies: [
                 "Entity",
+                "Environment",
                 "Networking",
                 "Resources",
                 "SharedViews",
@@ -170,33 +172,33 @@ public extension Image {
 
 ### 依存グラフ
 
+Feature間は直接依存せず、Environmentモジュールを介してDIします。
+
 ```
-AppFeature（エントリーポイント）
+AppFeature（DIコンテナ）
+├── Environment（ViewBuildableプロトコル）
 ├── DefenseTeamListFeature
-│   ├── Entity
-│   ├── Networking
-│   │   └── Entity
-│   ├── Resources
-│   ├── SharedViews
-│   │   ├── Entity
-│   │   ├── Resources
-│   │   ├── Kingfisher
-│   │   └── KingfisherWebP
-│   └── Storage
+├── AttackTeamListFeature
+├── CreateDefenseTeamFeature
+├── CreateAttackTeamFeature
+├── FilterUnitsFeature
 └── SearchViewFeature
-    ├── Entity
-    ├── Networking
-    ├── Resources
-    ├── SharedViews
-    └── Storage
+
+各Featureモジュール
+├── Environment          # ViewBuildable経由で他のFeatureを参照
+├── Entity
+├── Networking
+├── Resources
+├── SharedViews
+└── Storage
 ```
 
 ### 依存関係ルール
 
 1. **Feature → Core**: FeatureモジュールはCoreモジュール（Entity, Networking, Storage）に依存
-2. **Core → External**: Coreモジュールは外部ライブラリに依存可能
-3. **Feature ↔ Feature**: Featureモジュール同士は直接依存しない
-4. **AppFeature → Feature**: AppFeatureのみが複数のFeatureモジュールを統合
+2. **Feature → Environment**: Feature間参照はEnvironment経由（直接依存しない）
+3. **Core → External**: Coreモジュールは外部ライブラリに依存可能
+4. **AppFeature → Feature**: AppFeatureのみが複数のFeatureモジュールを統合し、ViewBuildableを実装
 
 ## 共通コンポーネント
 
