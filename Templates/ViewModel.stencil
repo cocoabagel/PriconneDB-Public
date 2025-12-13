@@ -1,0 +1,72 @@
+//
+//  {{ argument.name }}ViewModel.swift
+//  {{ argument.module }}
+//
+//  Created by {{ argument.author }} on {{ argument.date }}.
+//
+
+import Observation
+import SwiftUI
+
+@MainActor
+protocol {{ argument.name }}ViewModelInputs {
+    func fetchInitial() async
+    func fetchMore() async
+}
+
+@MainActor
+protocol {{ argument.name }}ViewModelOutputs {
+    var items: [String] { get }
+    var isLoading: Bool { get }
+    var hasMorePages: Bool { get }
+}
+
+@MainActor
+protocol {{ argument.name }}ViewModelType {
+    var inputs: {{ argument.name }}ViewModelInputs { get }
+    var outputs: {{ argument.name }}ViewModelOutputs { get }
+}
+
+@MainActor
+@Observable
+final class {{ argument.name }}ViewModel: {{ argument.name }}ViewModelType {
+    private var _items: [String] = []
+    private var _isLoading = false
+    private var _hasMorePages = true
+
+    var inputs: {{ argument.name }}ViewModelInputs { self }
+    var outputs: {{ argument.name }}ViewModelOutputs { self }
+
+    init() {}
+}
+
+// MARK: - {{ argument.name }}ViewModelInputs
+extension {{ argument.name }}ViewModel: {{ argument.name }}ViewModelInputs {
+    func fetchInitial() async {
+        _isLoading = true
+        defer { _isLoading = false }
+        // TODO: Implement fetch logic
+    }
+
+    func fetchMore() async {
+        guard !_isLoading, _hasMorePages else { return }
+        _isLoading = true
+        defer { _isLoading = false }
+        // TODO: Implement fetch more logic
+    }
+}
+
+// MARK: - {{ argument.name }}ViewModelOutputs
+extension {{ argument.name }}ViewModel: {{ argument.name }}ViewModelOutputs {
+    var items: [String] {
+        _items
+    }
+
+    var isLoading: Bool {
+        _isLoading
+    }
+
+    var hasMorePages: Bool {
+        _hasMorePages
+    }
+}

@@ -1,0 +1,77 @@
+//
+//  {{ argument.name }}View.swift
+//  {{ argument.module }}
+//
+//  Created by {{ argument.author }} on {{ argument.date }}.
+//
+
+import Environment
+import SwiftUI
+
+public struct {{ argument.name }}View: View {
+    @State private var viewModel: {{ argument.name }}ViewModelType = {{ argument.name }}ViewModel()
+
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass
+
+    public init() {}
+
+    public var body: some View {
+        NavigationStack {
+            Group {
+                if horizontalSizeClass == .regular {
+                    iPadLayout
+                } else {
+                    iPhoneLayout
+                }
+            }
+            .navigationTitle("{{ argument.title }}")
+            .task {
+                await viewModel.inputs.fetchInitial()
+            }
+        }
+    }
+}
+
+// MARK: - Private Views
+private extension {{ argument.name }}View {
+    var iPhoneLayout: some View {
+        List {
+            contentSection
+            loadingSection
+        }
+        .listStyle(.plain)
+    }
+
+    var iPadLayout: some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16.0) {
+                // TODO: Add content
+            }
+            .padding(.horizontal, 16.0)
+            .padding(.top, 8.0)
+
+            if viewModel.outputs.isLoading {
+                ProgressView()
+                    .padding()
+            }
+        }
+    }
+
+    var contentSection: some View {
+        // TODO: Add content
+        EmptyView()
+    }
+
+    @ViewBuilder var loadingSection: some View {
+        if viewModel.outputs.isLoading {
+            ProgressView()
+                .padding()
+        }
+    }
+}
+
+#Preview {
+    {{ argument.name }}View()
+        .environment(\.viewBuilder, PreviewBuilder())
+}

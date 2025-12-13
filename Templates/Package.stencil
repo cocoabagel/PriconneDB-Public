@@ -1,0 +1,44 @@
+// swift-tools-version: 6.2
+
+import PackageDescription
+
+let package = Package(
+    name: "{{ argument.module }}",
+    platforms: [
+        .iOS(.v26)
+    ],
+    products: [
+        .library(
+            name: "{{ argument.module }}",
+            targets: ["{{ argument.module }}"]
+        )
+    ],
+    dependencies: [
+        .package(path: "../Entity"),
+        .package(path: "../Environment"),
+        .package(path: "../Mocks"),
+        .package(path: "../Networking"),
+        .package(path: "../Resources"),
+        .package(path: "../SharedViews"),
+        .package(path: "../Storage")
+    ],
+    targets: [
+        .target(
+            name: "{{ argument.module }}",
+            dependencies: [
+                "Entity",
+                "Environment",
+                "Networking",
+                "Resources",
+                "SharedViews",
+                "Storage"
+            ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "{{ argument.module }}Tests",
+            dependencies: ["{{ argument.module }}", "Mocks"],
+            path: "Tests"
+        )
+    ]
+)
